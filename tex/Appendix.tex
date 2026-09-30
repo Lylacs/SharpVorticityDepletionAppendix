@@ -1,0 +1,1507 @@
+\documentclass[reqno,11pt]{amsart}
+\usepackage{amsmath,amsfonts,amssymb,amsxtra,latexsym,amscd,enumerate,amsthm,verbatim,color,physics, marginnote, xcolor, bbm}
+%\usepackage[dvipsnames]{color}
+
+ \usepackage[notcite,notref]{showkeys}
+\usepackage{hyperref}
+% \usepackage{graphicx}
+\usepackage{changepage}
+\allowdisplaybreaks
+
+
+
+
+\usepackage[margin=1.40in]{geometry}
+\setlength{\textwidth}{15.8cm}
+\setlength{\oddsidemargin}{0.2cm}
+\setlength{\evensidemargin}{0.2cm}
+\numberwithin{equation}{section}
+
+
+%Raj commands
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}} 
+\newcommand{\p}{\partial}
+\newcommand{\rwb}[1]{\marginnote{\color{blue}\footnotesize  #1}
+}
+\newcommand{\rir}{\Phi^{\iota}_{\epsilon, r}} %rayleigh inner right
+\newcommand{\ril}{\Phi^{\iota}_{\epsilon, l}} %rayleigh inner left
+\newcommand{\ric}{\Phi^{\iota}_{\epsilon, \circ}}
+%rayleigh inner wildcard 
+\newcommand{\ri}{\Phi^{\iota}_{\epsilon}}
+%rayleigh inner sum 
+\newcommand{\pic}{P^{\iota}_{\epsilon, \circ}}
+% \newcommand{\rwb}[1]{\marginnote{\blue{#1}}}
+% \newcommand{\hj}[1]{\marginnote{\red{#1}}}
+%\newcommand{\lc}[1]{\marginnote{\green{#1}}}
+\newcommand{\hi}{\varphi^{\iota}_\epsilon} %homogeneous inner
+\newcommand{\er}{E_{k, \epsilon}^{R,\iota}}% error real
+\newcommand{\ei}{E_{k, \epsilon}^{I,\iota}}%error imaginary
+\newcommand{\D}{D_\lambda}
+
+
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\tk}{\tilde{t}_k}
+%\newcommand{\HL}{\dot{H}^1\times L^2}
+\newcommand{\OR}{\overrightarrow}
+\newcommand{\E}{\mathcal{E}}
+\newcommand{\A}{\mathcal{A}}
+\newcommand{\B}{\mathcal{B}}
+\newcommand{\J}{\mathcal{J}}
+\newcommand{\G}{\mathcal{G}}
+\newcommand{\T}{\mathbb{T}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\Z}{\mathbb{Z}}
+%\newcommand{\eps}{\epsilon}
+%\newcommand{\H}{\mathcal{H}}
+
+\newcommand{\tpsi}{\widetilde{\psi}}
+%\newcommand{\va}{\vartheta}
+\newcommand{\tg}{\widetilde{g}}
+%\newcommand{\O}{\mathcal{O}}
+\newcommand{\oth}{\OR{\widetilde{\mathcal{H}}}}
+\newcommand{\tn}{\tilde{t}_n}
+\newcommand{\tv}{\tilde{v}}
+%\newcommand{\L}{\mathcal{L}}
+\newcommand{\spartial}{ {\slash\!\!\! \partial} }
+\newcommand{\pua}{\partial^{\alpha}}
+\newcommand{\wt}{\widetilde}
+\numberwithin{equation}{section} %pour numeroter les equations par section
+\newcommand{\lv}{\underline{v}}
+\newcommand{\uv}{\overline{v}}
+\usepackage{comment}
+
+\newcommand{\tp}{\mathfrak{p}}
+
+\newcommand{\nablaxtu}{\left(\frac{|\nabla u|^2}{2}+\frac{|\partial_tu|^2}{2}\right)}
+\newcommand{\tf}{\widetilde{f}}
+\newcommand{\decay}{\frac{\eta(k-\ell)}{\ell^2+(\eta-\ell t)^2}}
+\newcommand{\tma}{t_{k_0(\xi),\xi}}
+\newcommand{\tmb}{t_{k_0(\eta),\eta}}
+\newcommand{\tq}{\widetilde{q}}
+\newcommand{\factor}{e^{(\beta\lambda+C\sqrt{\delta})\langle k-\ell,\xi-\eta\rangle^{\frac{1}{2}}}}
+\newcommand{\factorr}{e^{(\beta\lambda+C\sqrt{\delta})|\ell,\eta|^{\frac{1}{2}}}}
+\newcommand{\obv}{\overline{\upsilon}}
+\newcommand{\ubv}{\underline{\upsilon}}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{claim}[theorem]{Claim}
+\newtheorem{assumption}[theorem]{Assumption}
+
+%\newcommand{\R}{\mathbb{R}}
+
+
+\begin{document}
+
+\title{Optimal Inviscid Damping and Vorticity Depletion for Non-monotonic shear flows}
+
+
+\author{Rajendra Beekie}
+\address{Tufts University }
+\email{rajendra.beekie@tufts.edu}
+
+\author{Shan Chen}
+\address{University of Minnesota}
+\email{chen7081@umn.edu}
+
+\author{Hao Jia}
+\address{University of Minnesota}
+\email{jia@umn.edu}
+
+
+\appendix
+\section{Explicit Rayleigh equations}
+
+
+% Idea
+% \begin{enumerate}
+%     \item Have a formal expansion assuming no vansihing of the derivative (akin to a formal power series). Allow for singular rhs to deal with the non degenerate case 
+%     \item For nd, d add different cutoffs to make the expansions make sense and show that commutator terms are harmless because they do not see the critical layers in the different regimes. 
+%     \item Keeps things unified for both. Potential issue is need to include $\delta^2(\Lambda)$ factor for degenerate case.
+% \end{enumerate}
+
+In the nondegenerate case, we group by singularity. For simplicity, we use the shorthands
+\begin{equation*}
+  \psi=\psi_{k,\epsilon}^\iota,\quad\ b=b(y),\quad\ \chi=\chi_{\ast,\delta_0/10}.
+\end{equation*}
+    \begingroup
+    \footnotesize
+    \begin{enumerate}
+      \item For $\mathcal{R}^\iota_{1,1,\epsilon}(y,\lambda)=\left(\partial_y^2-k^2-\frac{b''(y)}{b(y)-\lambda+i\iota\epsilon}\right)\left(\partial_\lambda D_\lambda\psi_{k,\epsilon}^{\iota}-\mathcal{S}_{1,1,\epsilon}^\iota\right)$:
+    
+    \begin{equation}\label{ndR10}
+    \mathcal{R}^\iota_{1,0,\epsilon}(y,\lambda) = c_1^{(1,0)}(y)\frac{\log(b(y)-\lambda+i\iota\epsilon)}{b(y)-\lambda+i\iota\epsilon}+\frac{c_2^{(1,0)}(y)+\mathfrak{c}^{(1,0)}(y)\partial_y\psi}{b(y)-\lambda+i\iota\epsilon}+c_{3}^{(1,0)}(y)\log(b(y)-\lambda+i\iota\epsilon)+c_4^{(1,0)}(y),
+    \end{equation}
+    with
+    \begin{align}
+      c_1^{(1,0)}(y,\lambda)=&0,\notag\\
+      c_2^{(1,0)}(y,\lambda)=&\left[2b'\partial_y\left(\frac{1-\chi}{(b')^2}\right)+\frac{(1-\chi)b''}{(b')^2}\right](b''\psi-\omega_{0k})+\frac{2(1-\chi)}{b'}(b'''\psi-\omega_{0k}'),\notag\\
+      \mathfrak{c}^{(1,0)}(y)=&\frac{2(1-\chi)b''}{b'}\notag\\
+      c_{3}^{(1,0)}(y,\lambda)=&\partial_y^2\!\left(\frac{(1-\chi)b''}{(b')^2}\right)\psi+2\partial_y\!\left(\frac{(1-\chi)b''}{(b')^2}\right)\partial_y\psi-\partial_y^2\!\left(\frac{1-\chi}{(b')^2}\right)\omega_{0k}-2\partial_y\!\left(\frac{1-\chi}{(b')^2}\right)\omega_{0k}'\notag\\
+      &+\frac{1-\chi}{(b')^2}(k^2\omega_{0k}-\omega_{0k}''),\notag\\
+      c_4^{(1,0)}(y,\lambda)=&\chi\frac{b''\psi-\omega_{0k}}{(b(y)-\lambda+i\iota\epsilon)^2}\notag
+    \end{align}
+    % \begin{align}
+    %         c_1(y,\lambda)=0\\
+    %         c_2(y,\lambda)=
+
+
+
+    %         &\mathcal{R}^\iota_{1,0,\epsilon}(y,\lambda)=\left(\partial_y^2-k^2-\frac{b''(y)}{b(y)-\lambda+i\iota\epsilon}\right)\left(\partial_\lambda\psi_{k,\epsilon}^{\iota}(y,\lambda)-\mathcal{S}^\iota_{1,0,\epsilon}\right)\notag\\
+    %         =&\left\{\begin{aligned}
+    %             &2b'(y)\partial_y\left(\frac{1-\chi_{\ast,\delta_0\slash10}(y)}{(b'(y))^2}\right)(b''(y) \psi(y, \lambda)-\omega_{0k}(y))\notag\\
+    %             &+b''(y)\frac{(1-\chi_{\ast,\delta_0\slash10}(y))}{(b'(y))^2}(b''(y) \psi(y, \lambda)-\omega_{0k}(y))\notag\\
+    %             &+2b'(y)\frac{1-\chi_{\ast,\delta_0\slash10}(y)}{(b'(y))^2}\bigl[b'''(y)\psi(y,\lambda)+b''(y)\partial_y\psi(y,\lambda)-\omega_{0k}'(y)\bigr]
+    %             \end{aligned}\right\}\frac{1}{b(y)-\lambda+i\iota\epsilon}\notag\\
+    %         &+\left\{\begin{aligned}
+    %             &\partial_y^2\left(\frac{1-\chi_{\ast,\delta_0\slash10}(y)}{(b'(y))^2}\right)(b''(y) \psi(y, \lambda)-\omega_{0k}(y))\\
+    %             &+2\partial_y\left(\frac{1-\chi_{\ast,\delta_0\slash10}(y)}{(b'(y))^2}\right)\bigl[b'''(y)\psi(y,\lambda)+b''(y)\partial_y\psi(y,\lambda)-\omega_{0k}'(y)\bigr]\\
+    %         &+\frac{1-\chi_{\ast,\delta_0\slash10}(y)}{(b'(y))^2}\bigl[b^{(4)}(y)\psi(y,\lambda)+2b'''(y)\partial_y\psi(y,\lambda)-\omega_{0k}''(y)+k^2\omega_{0k}(y)\bigr]
+    %         \end{aligned}\right\}\log(b(y)-\lambda+i\iota\epsilon)\notag\\
+    %         &+\chi_{\ast,\delta_0\slash10}(y)(b''(y) \psi(y, \lambda)-\omega_{0k}(y))\frac{1}{(b(y)-\lambda+i\iota\epsilon)^2}
+    % \end{align}
+
+    \item For $\mathcal{R}^\iota_{2,0,\epsilon}(y,\lambda)=\left(\partial_y^2-k^2-\frac{b''(y)}{b(y)-\lambda+i\iota\epsilon}\right)\left(\partial_\lambda^2\psi_{k,\epsilon}^{\iota}(y,\lambda)-\mathcal{S}_{2, 0, \epsilon}^\iota\right)$:
+    \begin{equation}\label{ndR20}
+        \begin{split}
+            \mathcal{R}^\iota_{2,0,\epsilon}(y,\lambda)=&c_1^{(2,0)}(y)\frac{\log(b(y)-\lambda+i\iota\epsilon)}{b(y)-\lambda+i\iota\epsilon}+\frac{c_2^{(2,0)}(y)+\mathfrak{c}_1^{(2,0)}(y)\partial_yD_\lambda\psi+\mathfrak{c}_2^{(2,0)}(y)\partial_y\psi}{b(y)-\lambda+i\iota\epsilon}\\
+            &+c_3^{(2,0)}(y)\log(b(y)-\lambda+i\iota\epsilon)+c_4^{(2,0)}(y),
+        \end{split}
+    \end{equation}
+    with
+    \begin{align}
+      c_1^{(2,0)}(y,\lambda)=&(1-\chi)\frac{2\bigl[b'b'''-2(b'')^2\bigr]}{(b')^4}(b''\psi-\omega_{0k}),\notag\\
+      c_2^{(2,0)}(y,\lambda)=
+      &\Biggl\{-\partial_y^2\left(\frac{(1-\chi)b''}{(b')^2}\right)-2b'\partial_y\left[(1-\chi)\left(-\frac{2b'''}{(b')^3}+\frac{3(b'')^2}{(b')^4}\right)\right]-(1-\chi)b''\left[-\frac{2b'''}{(b')^3}+\frac{3(b'')^2}{(b')^4}\right]\Biggr\}\psi\notag\\
+      &+\left[4b'\partial_y\left(\frac{(1-\chi)b''}{(b')^3}\right)+\frac{2(1-\chi)(b'')^2}{(b')^3}\right]D_\lambda\psi+\bigl(\partial_y^2-k^2\bigr)\left(\frac{(1-\chi)\omega_{0k}}{(b')^2}\right)\notag\\
+      &-2b'\partial_y\left[(1-\chi)\left(\frac{2\omega_{0k}'}{(b')^3}-\frac{3b''\omega_{0k}}{(b')^4}\right)\right]-(1-\chi)b''\left[\frac{2\omega_{0k}'}{(b')^3}-\frac{3b''\omega_{0k}}{(b')^4}\right],\notag\\
+      \mathfrak{c}_1^{(2,0)}(y)=&\frac{4(1-\chi)b''}{(b')^2},\notag\\
+      \mathfrak{c}_2^{(2,0)}(y)=&-2\partial_y\left(\frac{(1-\chi)b''}{(b')^2}\right)+(1-\chi)\left[\frac{4b'''}{(b')^2}-\frac{6(b'')^2}{(b')^3}\right],\notag\\
+      c_3^{(2,0)}(y,\lambda)=
+      &-\bigl(\partial_y^2-k^2\bigr)\left[(1-\chi)
+       \left(\frac{2\omega_{0k}'}{(b')^3}
+                   -\frac{3b''\omega_{0k}}{(b')^4}\right)\right]\notag\\
+      &-\Biggl\{\partial_y^2\left[(1-\chi)
+       \left(-\frac{2b'''}{(b')^3}+\frac{3(b'')^2}{(b')^4}\right)\right]
+       +\frac{4k^2(1-\chi)(b'')^2}{(b')^4}\Biggr\}\psi\notag\\
+      &-\Biggl\{2\partial_y\left[(1-\chi)
+       \left(-\frac{2b'''}{(b')^3}+\frac{3(b'')^2}{(b')^4}\right)\right]+\frac{2(1-\chi)b''}{(b')^3}
+       \left[\frac{b'''}{b'}-\frac{2(b'')^2}{(b')^2}\right]
+       \Biggr\}\partial_y\psi\notag\\
+      &+\Biggl\{\partial_y^2\left(\frac{2(1-\chi)b''}{(b')^3}\right)
+       +\frac{2(1-\chi)b''}{(b')^3}
+       \left[\frac{b'''}{b'}-\frac{2(b'')^2}{(b')^2}\right]
+       \Biggr\}D_\lambda\psi\notag\\
+      &+\left[4\partial_y\left(\frac{(1-\chi)b''}{(b')^3}\right)
+       +\frac{4(1-\chi)(b'')^2}{(b')^4}\right]\partial_yD_\lambda\psi,\notag\\
+      c_4^{(2,0)}(y,\lambda)=&\chi\left[\frac{2(b''\psi-\omega_{0k})}{(b(y)-\lambda+i\iota\epsilon)^3}+\frac{2b''\partial_\lambda\psi}{(b(y)-\lambda+i\iota\epsilon)^2}\right]-\chi'\frac{2(b''\psi-\omega_{0k})}{b'(b(y)-\lambda+i\iota\epsilon)^2}.\notag
+    \end{align}
+%     \begin{align}\label{ndR20}
+%             &\mathcal{R}^\iota_{2,0,\epsilon}(y,\lambda)=\left(\partial_y^2-k^2-\frac{b''(y)}{b(y)-\lambda+i\iota\epsilon}\right)\left(\partial_\lambda^2\psi_{k,\epsilon}^{\iota}(y,\lambda)-\mathcal{S}_{2, 0, \epsilon}^\iota\right)\notag\\
+%             &=(1-\chi(y))
+%  \frac{2\bigl[b'(y)b'''(y)-2(b''(y))^2\bigr]}{(b'(y))^4}
+%  \bigl[b''(y)\psi(y,\lambda)-\omega_{0k}(y)\bigr]
+%  \frac{\log(b(y)-\lambda+i\iota\epsilon)}
+%       {b(y)-\lambda+i\iota\epsilon}
+%   \notag\\
+%  &\quad+\left\{
+%  \begin{aligned}
+%  &-\partial_y^2\left(
+%    (1-\chi(y))\frac{b''(y)}{(b'(y))^2}\right)\psi(y,\lambda)
+%  -2\partial_y\left(
+%    (1-\chi(y))\frac{b''(y)}{(b'(y))^2}\right)
+%    \partial_y\psi(y,\lambda)\\[-2pt]
+%  &+\partial_y^2\left(
+%    \frac{(1-\chi(y))\omega_{0k}(y)}{(b'(y))^2}\right)
+%  -k^2\frac{(1-\chi(y))\omega_{0k}(y)}{(b'(y))^2}\\[-2pt]
+%  &-2b'(y)\partial_y\left(
+%    \frac{2(1-\chi(y))\omega_{0k}'(y)}{(b'(y))^3}\right)
+%  -\frac{2(1-\chi(y))b''(y)\omega_{0k}'(y)}{(b'(y))^3}\\[-2pt]
+%  &-2b'(y)\partial_y\left(
+%    (1-\chi(y))
+%    \left[-\frac{2b'''(y)}{(b'(y))^3}
+%          +\frac{3(b''(y))^2}{(b'(y))^4}\right]\psi(y,\lambda)\right)\\[-2pt]
+%  &-(1-\chi(y))b''(y)
+%    \left[-\frac{2b'''(y)}{(b'(y))^3}
+%          +\frac{3(b''(y))^2}{(b'(y))^4}\right]\psi(y,\lambda)\\[-2pt]
+%  &-2b'(y)\partial_y\left(
+%    -\frac{3(1-\chi(y))b''(y)\omega_{0k}(y)}{(b'(y))^4}\right)
+%  +\frac{3(1-\chi(y))(b''(y))^2\omega_{0k}(y)}{(b'(y))^4}\\[-2pt]
+%  &-2b'(y)\partial_y\left(
+%    -\frac{2(1-\chi(y))b''(y)D_\lambda\psi(y,\lambda)}
+%           {(b'(y))^3}\right)
+%  +\frac{2(1-\chi(y))(b''(y))^2D_\lambda\psi(y,\lambda)}
+%         {(b'(y))^3}
+%  \end{aligned}\right\}
+%  \frac{1}{b(y)-\lambda+i\iota\epsilon}
+%   \notag\\
+%  &\quad-\left\{
+%  \begin{aligned}
+%  &\partial_y^2\left(
+%    \frac{2(1-\chi(y))\omega_{0k}'(y)}{(b'(y))^3}\right)
+%  -\frac{2k^2(1-\chi(y))\omega_{0k}'(y)}{(b'(y))^3}\\[-2pt]
+%  &+\partial_y^2\left\{
+%    (1-\chi(y))
+%    \left[-\frac{2b'''(y)}{(b'(y))^3}
+%          +\frac{3(b''(y))^2}{(b'(y))^4}\right]\right\}
+%    \psi(y,\lambda)\\[-2pt]
+%  &+2\partial_y\left\{
+%    (1-\chi(y))
+%    \left[-\frac{2b'''(y)}{(b'(y))^3}
+%          +\frac{3(b''(y))^2}{(b'(y))^4}\right]\right\}
+%    \partial_y\psi(y,\lambda)\\[-2pt]
+%  &-\partial_y^2\left(
+%    \frac{3(1-\chi(y))b''(y)\omega_{0k}(y)}{(b'(y))^4}\right)
+%  +\frac{3k^2(1-\chi(y))b''(y)\omega_{0k}(y)}{(b'(y))^4}\\[-2pt]
+%  &-\partial_y^2\left(
+%    \frac{2(1-\chi(y))b''(y)}{(b'(y))^3}\right)
+%    D_\lambda\psi(y,\lambda)
+%  -2\partial_y\left(
+%    \frac{2(1-\chi(y))b''(y)}{(b'(y))^3}\right)
+%    \partial_yD_\lambda\psi(y,\lambda)\\[-2pt]
+%  &-\frac{2(1-\chi(y))b''(y)}{(b'(y))^3}
+%  \left(\frac{b'''(y)}{b'(y)} -\frac{2(b''(y))^2}{(b'(y))^2}\right)
+%   \bigl[D_\lambda\psi(y,\lambda)-\partial_y\psi(y,\lambda)\bigr]\\
+%  &-\frac{4(1-\chi(y))(b''(y))^2}{(b'(y))^4}\bigl[\partial_yD_\lambda\psi(y,\lambda)-k^2\psi(y,\lambda)\bigr]
+%  \end{aligned}\right\}
+%  \log(b(y)-\lambda+i\iota\epsilon)\notag\\
+%  &\quad+\chi(y)\left\{2\bigl[b''(y)\psi(y,\lambda)-\omega_{0k}(y)\bigr]
+%  \frac{1}{(b(y)-\lambda+i\iota\epsilon)^3}+\frac{2b''(y)}{b'(y)}
+%  \bigl[D_\lambda\psi(y,\lambda)-\partial_y\psi(y,\lambda)\bigr]
+%  \frac{1}{(b(y)-\lambda+i\iota\epsilon)^2}\right\}\notag\\
+%  &\quad-\chi'(y)\left(\frac{2}{b'(y)}
+%  \bigl[b''(y)\psi(y,\lambda)-\omega_{0k}(y)\bigr] \frac{1}{(b(y)-\lambda+i\iota\epsilon)^2}\right)
+%     \end{align}
+
+\item For $\mathcal{R}^\iota_{1,1,\epsilon}(y,\lambda)=\left(\partial_y^2-k^2-\frac{b''(y)}{b(y)-\lambda+i\iota\epsilon}\right)\left(\partial_\lambda D_\lambda\psi_{k,\epsilon}^{\iota}-\mathcal{S}_{1,1,\epsilon}^\iota\right)$:
+    \begin{equation}\label{ndR11}
+        \begin{split}
+            \mathcal{R}^\iota_{1,1,\epsilon}=&c_1^{(1,1)}(y)\frac{\log(b(y)-\lambda+i\iota\epsilon)}{b(y)-\lambda+i\iota\epsilon}+\frac{c_2^{(1,1)}(y)+\mathfrak{c}_1^{(1,1)}(y)\partial_yD_\lambda\psi+\mathfrak{c}_2^{(1,1)}(y)\partial_y\psi}{b(y)-\lambda+i\iota\epsilon}\\
+            &+c_{3}^{(1,1)}(y)\log(b(y)-\lambda+i\iota\epsilon)+c_4^{(1,1)}(y)
+        \end{split}
+    \end{equation}
+    with
+    \begin{align}
+      c_1^{(1,1)}(y,\lambda)=&(1-\chi)\frac{b'b'''-2(b'')^2}{(b')^3}(b''\psi-\omega_{0k}),\notag\\
+      c_2^{(1,1)}(y,\lambda)=&\Biggl\{\partial_y^2\left(\frac{(1-\chi)b''}{b'}\right)-2b'\partial_y\left[(1-\chi)
+        \left(\frac{b'''}{(b')^2}-\frac{(b'')^2}{(b')^3}\right)\right]-(1-\chi)b''
+        \left[\frac{b'''}{(b')^2}-\frac{(b'')^2}{(b')^3}\right]
+        \Biggr\}\psi\notag\\
+ &+\left[\frac{(1-\chi)b'''}{b'}
+       -2b'\partial_y\left(\frac{(1-\chi)b''}{(b')^2}\right)
+       -\frac{(1-\chi)(b'')^2}{(b')^2}\right]D_\lambda\psi-\bigl(\partial_y^2-k^2\bigr)
+        \left(\frac{(1-\chi)\omega_{0k}}{b'}\right)\notag\\
+ &+2b'\partial_y\left[(1-\chi)
+        \left(\frac{\omega_{0k}'}{(b')^2}
+                       -\frac{b''\omega_{0k}}{(b')^3}\right)\right]+(1-\chi)b''\left[\frac{\omega_{0k}'}{(b')^2}
+                       -\frac{b''\omega_{0k}}{(b')^3}\right]+b'c_2^{(2,0)},\notag\\
+      \mathfrak{c}_1^{(1,1)}(y)=&\frac{2(1-\chi)b''}{b'},\notag\\
+      \mathfrak{c}_2^{(1,1)}(y)=&(1-\chi)\left[\frac{b'''}{b'}-\frac{2(b'')^2}{(b')^2}\right],\notag\\
+      c_3^{(1,1)}(y,\lambda)=&b'c_3^{(2,0)}
+ +\bigl(\partial_y^2-k^2\bigr)\left[(1-\chi)
+        \left(\frac{\omega_{0k}'}{(b')^2}
+                       -\frac{b''\omega_{0k}}{(b')^3}\right)\right]\notag\\
+ &-\Biggl\{\partial_y^2\left[(1-\chi)
+        \left(\frac{b'''}{(b')^2}-\frac{(b'')^2}{(b')^3}\right)\right]
+        -\frac{2k^2(1-\chi)(b'')^2}{(b')^3}\Biggr\}\psi\notag\\
+ &+\Biggl\{-2\partial_y\left[(1-\chi)
+        \left(\frac{b'''}{(b')^2}-\frac{(b'')^2}{(b')^3}\right)\right]+\frac{(1-\chi)b''}{(b')^2}
+        \left[\frac{b'''}{b'}-\frac{2(b'')^2}{(b')^2}\right]
+        \Biggr\}\partial_y\psi\notag\\
+ &-\Biggl\{\partial_y^2\left(\frac{(1-\chi)b''}{(b')^2}\right)
+        +\frac{(1-\chi)b''}{(b')^2}
+        \left[\frac{b'''}{b'}-\frac{2(b'')^2}{(b')^2}\right]
+        \Biggr\}D_\lambda\psi\notag\\
+ &-\left[2\partial_y\left(\frac{(1-\chi)b''}{(b')^2}\right)
+        +\frac{2(1-\chi)(b'')^2}{(b')^3}\right]\partial_yD_\lambda\psi,\notag\\
+        c_4^{(1,1)}(y,\lambda)=
+        &\chi\left[\frac{b''D_\lambda\psi+b'''\psi-\omega_{0k}'}{(b(y)-\lambda+i\iota\epsilon)^2}+\frac{ b'''\partial_\lambda\psi}{b(y)-\lambda+i\iota\epsilon}
+        \right]+2b''\partial_y r_{2,0,\epsilon}^{\iota}
+        +b'''r_{2,0,\epsilon}^{\iota}.\notag
+    \end{align}
+%     \begin{align}\label{ndR11}
+%             &\mathcal{R}^\iota_{1,1,\epsilon}(y,\lambda)=\left(\partial_y^2-k^2-\frac{b''(y)}{b(y)-\lambda+i\iota\epsilon}\right)\left(\partial_\lambda D_\lambda\psi_{k,\epsilon}^{\iota}-\mathcal{S}_{1,1,\epsilon}^\iota\right)\notag\\
+%  &=(1-\chi)\frac{2(b'')^2-b'b'''}{(b')^3}
+%  (b''\psi-\omega_{0k})
+%  \frac{\log(b-\lambda+i\iota\epsilon)}
+%  {b-\lambda+i\iota\epsilon}
+%  \notag\\
+%  &\quad+\left\{\begin{aligned}
+%     &\frac{b'''}{b'}(D_\lambda\psi-\partial_y\psi)
+%  -2\partial_y\left((1-\chi)\left(-\frac{b''}{b'}\right)\right)
+%    \partial_y\psi
+%  -\partial_y^2\left((1-\chi)\left(-\frac{b''}{b'}\right)\right)\psi
+%  \notag\\[-2pt]
+%  &-\partial_y^2\left(\frac{1-\chi}{b'}\right)\omega_{0k}
+%  -2\partial_y\left(\frac{1-\chi}{b'}\right)\omega_{0k}'
+%  -\frac{1-\chi}{b'}(\omega_{0k}''-k^2\omega_{0k})
+%  \notag\\[-2pt]
+%  &-2b'\partial_y\Biggl\{(1-\chi)\left[
+%  -\frac{\omega_{0k}'}{(b')^2}
+%  +\left(\frac{b'''}{(b')^2}-\frac{(b'')^2}{(b')^3}\right)\psi
+%  +\frac{b''}{(b')^3}\omega_{0k}
+%  +\frac{b''}{(b')^2}D_\lambda\psi\right]\Biggr\}
+%  \notag\\[-2pt]
+%  &-b''(1-\chi)\Biggl\{
+%  -\frac{\omega_{0k}'}{(b')^2}
+%  +\left[\frac{b'''}{(b')^2}-\frac{(b'')^2}{(b')^3}\right]\psi
+%  +\frac{b''}{(b')^3}\omega_{0k}
+%  +\frac{b''}{(b')^2}D_\lambda\psi\Biggr\}
+%  \end{aligned}\right\}
+%  \frac{1}{b-\lambda+i\iota\epsilon}
+%  \notag\\
+%  &\quad-\left\{\begin{aligned}
+%  &-\frac{1-\chi}{(b')^2}(\omega_{0k}'''-k^2\omega_{0k}')
+%  +2\partial_y\left(-\frac{1-\chi}{(b')^2}\right)\omega_{0k}''
+%  +\partial_y^2\left(-\frac{1-\chi}{(b')^2}\right)\omega_{0k}'
+%  \notag\\[-2pt]
+%  &+2\partial_y\left\{(1-\chi)\left[
+%  \frac{b'''}{(b')^2}-\frac{(b'')^2}{(b')^3}\right]\right\}
+%  \partial_y\psi
+%  +\partial_y^2\left\{(1-\chi)\left[
+%  \frac{b'''}{(b')^2}-\frac{(b'')^2}{(b')^3}\right]\right\}\psi
+%  \notag\\[-2pt]
+%  &+\frac{(1-\chi)b''}{(b')^3}(\omega_{0k}''-k^2\omega_{0k})
+%  +2\partial_y\left(\frac{(1-\chi)b''}{(b')^3}\right)\omega_{0k}'
+%  +\partial_y^2\left(\frac{(1-\chi)b''}{(b')^3}\right)\omega_{0k}
+%  \notag\\[-2pt]
+%  &+\frac{(1-\chi)b''}{(b')^2}\Biggl\{
+%  \frac{b'''}{b'}(D_\lambda\psi-\partial_y\psi)
+%  +\frac{2b''}{b'}(\partial_yD_\lambda\psi-k^2\psi)
+%  -\frac{2(b'')^2}{(b')^2}(D_\lambda\psi-\partial_y\psi)
+%  \Biggr\}
+%  \notag\\[-2pt]
+%  &+2\partial_y\left(\frac{(1-\chi)b''}{(b')^2}\right)
+%  \partial_yD_\lambda\psi
+%  +\partial_y^2\left(\frac{(1-\chi)b''}{(b')^2}\right)
+%  D_\lambda\psi
+%  \end{aligned}\right\}\log(b-\lambda+i\iota\epsilon)
+%  \notag\\
+%  &\quad+\chi\left\{\bigl[b''D_\lambda\psi+b'''\psi-\omega_{0k}'\bigr]\frac{1}{(b-\lambda+i\iota\epsilon)^2}+b'''\partial_\lambda^2\psi+2b''\partial_y\partial_\lambda^2\psi\right\}\notag\\
+%  &\quad+\chi'\left\{2\bigl[b''\psi-\omega_{0k}\bigr]\frac{1}{(b-\lambda+i\iota\epsilon)^2}+2b''\partial_\lambda^2\psi+2b'\partial_y\partial_\lambda^2\psi\right\}+\chi''b'\partial_\lambda^2\psi\notag\\
+%  &\quad+\red{(1-\chi)b'\mathcal{R}_{2,0,\epsilon}^\iota+2\partial_y\big[(1-\chi)b'\big]\partial_y r_{2,0,\epsilon}^\iota+\partial_y^2\big[(1-\chi)b'\big]r_{2,0,\epsilon}^\iota}.
+%     \end{align}
+
+\item For $\mathcal{R}^\iota_{3,0,\epsilon}(y,\lambda)=\left(\partial_y^2-k^2-\frac{b''(y)}{b(y)-\lambda+i\iota\epsilon}\right)\left(\partial_\lambda^3\psi_{k,\epsilon}^{\iota}(y,\lambda)-\mathcal{S}^\iota_{3,\epsilon}\right)$:
+\begin{equation}\label{ndR30}
+    \begin{split}
+        \mathcal{R}^\iota_{3,0,\epsilon}(y,\lambda)=&c_1^{(3,0)}(y)\frac{\log(b(y)-\lambda+i\iota\epsilon)}{b(y)-\lambda+i\iota\epsilon}+\frac{c_2^{(3,0)}(y)+\mathfrak{c}_1^{(3,0)}(y)\partial_yD_\lambda^2\psi+\mathfrak{c}_2^{(3,0)}(y)\partial_yD_\lambda\psi+\mathfrak{c}_3^{(3,0)}(y)\partial_y\psi}{b(y)-\lambda+i\iota\epsilon}\\
+        &+c_3^{(3,0)}(y)\log(b(y)-\lambda+i\iota\epsilon)+c_4^{(3,0)}(y)
+    \end{split}
+\end{equation}
+with 
+\begin{align}
+  c_1^{(3,0)}(y,\lambda)=&(1-\chi)\left[\frac{3b''b^{(4)}+6(b''')^2}{(b')^4}-\frac{42(b'')^2b'''}{(b')^5}+\frac{42(b'')^4}{(b')^6}\right]\psi \notag\\
+       &+(1-\chi)\left[-\frac{3b^{(4)}}{(b')^4}
+       +\frac{30b''b'''}{(b')^5}
+       -\frac{42(b'')^3}{(b')^6}\right]\omega_{0k}+(1-\chi)\left[-\frac{6b'''}{(b')^4}
+       +\frac{12(b'')^2}{(b')^5}\right]\omega_{0k}' \notag\\
+       &+(1-\chi)\left[\frac{6b''b'''}{(b')^4}-\frac{12(b'')^3}{(b')^5}\right]D_\lambda\psi \notag\\
+  c_2^{(3,0)}(y,\lambda)=&-\Biggl\{2k^2\partial_y\left[-\frac{(1-\chi)b''}{(b')^3}\right]+\partial_y^2\left[(1-\chi)\left(\frac{2b'''}{(b')^3}-\frac{3(b'')^2}{(b')^4}\right)\right] \notag\\
+ &\qquad-k^2\left(\frac{2b''}{b'}\right)\left(\frac{3(1-\chi)b''}{(b')^3}\right) \notag\\
+ &\qquad+2b'\partial_y\left[(1-\chi)\left(-\frac{3b^{(4)}}{(b')^4}+\frac{16b''b'''}{(b')^5}-\frac{15(b'')^3}{(b')^6}-\frac{k^2b''}{(b')^4}\right)\right] \notag\\
+ &\qquad+b''\left((1-\chi)\left(-\frac{3b^{(4)}}{(b')^4}+\frac{16b''b'''}{(b')^5}-\frac{15(b'')^3}{(b')^6}-\frac{k^2b''}{(b')^4}\right)\right)\Biggr\}\psi \notag\\
+ &-\Biggl\{\partial_y^2\left[\frac{3(1-\chi)b''}{(b')^3}\right]+\left(\frac{b'''}{b'}-\frac{2(b'')^2}{(b')^2}\right)\left(\frac{3(1-\chi)b''}{(b')^3}\right) \notag\\
+ &\qquad+2b'\partial_y\left[(1-\chi)\left(-\frac{6b'''}{(b')^4}+\frac{12(b'')^2}{(b')^5}\right)\right] \notag\\
+ &\qquad+b''\left((1-\chi)\left(-\frac{6b'''}{(b')^4}+\frac{12(b'')^2}{(b')^5}\right)\right)\Biggr\}D_\lambda\psi \notag\\
+ &-\left\{2b'\partial_y\left[-\frac{3(1-\chi)b''}{(b')^4}\right]+b''\left(-\frac{3(1-\chi)b''}{(b')^4}\right)\right\}D_\lambda^2\psi \notag\\
+ &-\left[\left(-\frac{2(1-\chi)}{(b')^3}\right)+2b'\left(\frac{3(1-\chi)}{(b')^4}\right)\right]\omega_{0k}''' \notag\\
+ &-\Biggl\{2\partial_y\left[-\frac{2(1-\chi)}{(b')^3}\right]+\left(\frac{3(1-\chi)b''}{(b')^4}\right) \notag\\
+ &\qquad+2b'\left[\left(-\frac{12(1-\chi)b''}{(b')^5}\right)+\partial_y\left[\frac{3(1-\chi)}{(b')^4}\right]\right]+b''\left(\frac{3(1-\chi)}{(b')^4}\right)\Biggr\}\omega_{0k}'' \notag\\
+ &-\Biggl\{\partial_y^2\left[-\frac{2(1-\chi)}{(b')^3}\right]-k^2\left(-\frac{2(1-\chi)}{(b')^3}\right)+2\partial_y\left[\frac{3(1-\chi)b''}{(b')^4}\right] \notag\\
+ &\qquad+2b'\Biggl[\partial_y\left[-\frac{12(1-\chi)b''}{(b')^5}\right]+\left((1-\chi)\left(\frac{k^2}{(b')^4}-\frac{4b'''}{(b')^5}+\frac{15(b'')^2}{(b')^6}\right)\right)\Biggr] \notag\\
+ &\qquad +b''\left(-\frac{12(1-\chi)b''}{(b')^5}\right)\Biggr\}\omega_{0k}' \notag\\
+ &-\Biggl\{\partial_y^2\left[\frac{3(1-\chi)b''}{(b')^4}\right]-k^2\left(\frac{3(1-\chi)b''}{(b')^4}\right) \notag\\
+ &\qquad+2b'\partial_y\left[(1-\chi)\left(\frac{k^2}{(b')^4}-\frac{4b'''}{(b')^5}+\frac{15(b'')^2}{(b')^6}\right)\right] \notag\\
+ &\qquad+b''\left((1-\chi)\left(\frac{k^2}{(b')^4}-\frac{4b'''}{(b')^5}+\frac{15(b'')^2}{(b')^6}\right)\right)\Biggr\}\omega_{0k}, \notag\\
+ \mathfrak{c}_1^{(3,0)}(y)=&-2b'\left(-\frac{3(1-\chi)b''}{(b')^4}\right), \notag\\
+\mathfrak{c}_2^{(3,0)}(y)=&-2\partial_y\left[\frac{3(1-\chi)b''}{(b')^3}\right]-\left(\frac{2b''}{b'}\right)\left(\frac{3(1-\chi)b''}{(b')^3}\right)-2b'\left((1-\chi)\left(-\frac{6b'''}{(b')^4}+\frac{12(b'')^2}{(b')^5}\right)\right), \notag\\
+\mathfrak{c}_3^{(3,0)}(y)=&-\partial_y^2\left[-\frac{(1-\chi)b''}{(b')^3}\right]-2\partial_y\left[(1-\chi)\left(\frac{2b'''}{(b')^3}-\frac{3(b'')^2}{(b')^4}\right)\right] \notag\\
+ &+\left(\frac{b'''}{b'}-\frac{2(b'')^2}{(b')^2}\right)\left(\frac{3(1-\chi)b''}{(b')^3}\right) \notag\\
+ &-2b'\left((1-\chi)\left(-\frac{3b^{(4)}}{(b')^4}+\frac{16b''b'''}{(b')^5}-\frac{15(b'')^3}{(b')^6}-\frac{k^2b''}{(b')^4}\right)\right), \notag\\
+ c_3^{(3,0)}(y)
+={}&-\Biggl\{\partial_y^2\left[(1-\chi)\left(-\frac{3b^{(4)}}{(b')^4}+\frac{16b''b'''}{(b')^5}-\frac{15(b'')^3}{(b')^6}-\frac{k^2b''}{(b')^4}\right)\right] \notag\\
+ &\qquad-k^2\left(\frac{2b''}{b'}\right)\left((1-\chi)\left(-\frac{6b'''}{(b')^4}+\frac{12(b'')^2}{(b')^5}\right)\right) \notag\\
+ &\qquad-k^2\left(\frac{2b'''}{b'}-\frac{6(b'')^2}{(b')^2}\right)\left(-\frac{3(1-\chi)b''}{(b')^4}\right)\Biggr\}\psi \notag\\
+ &-\Biggl\{2\partial_y\left[(1-\chi)\left(-\frac{3b^{(4)}}{(b')^4}+\frac{16b''b'''}{(b')^5}-\frac{15(b'')^3}{(b')^6}-\frac{k^2b''}{(b')^4}\right)\right] \notag\\
+ &\qquad-\left(\frac{b'''}{b'}-\frac{2(b'')^2}{(b')^2}\right)\left((1-\chi)\left(-\frac{6b'''}{(b')^4}+\frac{12(b'')^2}{(b')^5}\right)\right) \notag\\
+ &\qquad-\left(\frac{b^{(4)}}{b'}-\frac{6b''b'''}{(b')^2}+\frac{6(b'')^3}{(b')^3}\right)\left(-\frac{3(1-\chi)b''}{(b')^4}\right)\Biggr\}\partial_y\psi \notag\\
+ &-\Biggl\{\partial_y^2\left[(1-\chi)\left(-\frac{6b'''}{(b')^4}+\frac{12(b'')^2}{(b')^5}\right)\right] \notag\\
+ &\qquad+\left(\frac{b'''}{b'}-\frac{2(b'')^2}{(b')^2}\right)\left((1-\chi)\left(-\frac{6b'''}{(b')^4}+\frac{12(b'')^2}{(b')^5}\right)\right) \notag\\
+ &\qquad+\Bigl(\left(\frac{b^{(4)}}{b'}-\frac{6b''b'''}{(b')^2}+\frac{6(b'')^3}{(b')^3}\right)-2k^2\left(\frac{2b''}{b'}\right)\Bigr)\left(-\frac{3(1-\chi)b''}{(b')^4}\right)\Biggr\}D_\lambda\psi \notag\\
+ &-\Biggl\{2\partial_y\left[(1-\chi)\left(-\frac{6b'''}{(b')^4}+\frac{12(b'')^2}{(b')^5}\right)\right] \notag\\
+ &\qquad+\left(\frac{2b''}{b'}\right)\left((1-\chi)\left(-\frac{6b'''}{(b')^4}+\frac{12(b'')^2}{(b')^5}\right)\right)\Biggr\}\partial_yD_\lambda\psi \notag\\
+ &-\Biggl\{\partial_y^2\left[-\frac{3(1-\chi)b''}{(b')^4}\right]+\left(\frac{2b'''}{b'}-\frac{6(b'')^2}{(b')^2}\right)\left(-\frac{3(1-\chi)b''}{(b')^4}\right)\Biggr\}D_\lambda^2\psi \notag\\
+ &-\Biggl\{2\partial_y\left[-\frac{3(1-\chi)b''}{(b')^4}\right]+2\left(\frac{2b''}{b'}\right)\left(-\frac{3(1-\chi)b''}{(b')^4}\right)\Biggr\}\partial_yD_\lambda^2\psi \notag\\
+ &-\left(\frac{3(1-\chi)}{(b')^4}\right)\omega_{0k}^{(4)} \notag\\
+ &-\Bigl(\left(-\frac{12(1-\chi)b''}{(b')^5}\right)+2\partial_y\left[\frac{3(1-\chi)}{(b')^4}\right]\Bigr)\omega_{0k}''' \notag\\
+ &-\Biggl\{2\partial_y\left[-\frac{12(1-\chi)b''}{(b')^5}\right] \notag\\
+ &\qquad+\left((1-\chi)\left(\frac{k^2}{(b')^4}-\frac{4b'''}{(b')^5}+\frac{15(b'')^2}{(b')^6}\right)\right) \notag\\
+ &\qquad+\partial_y^2\left[\frac{3(1-\chi)}{(b')^4}\right]-k^2\left(\frac{3(1-\chi)}{(b')^4}\right)\Biggr\}\omega_{0k}'' \notag\\
+ &-\Biggl\{\partial_y^2\left[-\frac{12(1-\chi)b''}{(b')^5}\right]-k^2\left(-\frac{12(1-\chi)b''}{(b')^5}\right) \notag\\
+ &\qquad+2\partial_y\left[(1-\chi)\left(\frac{k^2}{(b')^4}-\frac{4b'''}{(b')^5}+\frac{15(b'')^2}{(b')^6}\right)\right]\Biggr\}\omega_{0k}' \notag\\
+ &-\Biggl\{\partial_y^2\left[(1-\chi)\left(\frac{k^2}{(b')^4}-\frac{4b'''}{(b')^5}+\frac{15(b'')^2}{(b')^6}\right)\right] \notag\\
+ &\qquad-k^2\left((1-\chi)\left(\frac{k^2}{(b')^4}-\frac{4b'''}{(b')^5}+\frac{15(b'')^2}{(b')^6}\right)\right)\Biggr\}\omega_{0k}, \notag\\
+ c_4^{(3,0)}(y)=&\chi\left[
+ \frac{6(b''\psi-\omega_{0k})}{(b(y)-\lambda+i\iota\epsilon)^4}
+ +\frac{6b''\partial_\lambda\psi}{(b(y)-\lambda+i\iota\epsilon)^3}
+ +\frac{3b''\partial_\lambda^2\psi}{(b(y)-\lambda+i\iota\epsilon)^2}\right] \notag\\
+&+\chi'\Biggl\{-\frac{4(b''\psi-\omega_{0k})}{b'(b(y)-\lambda+i\iota\epsilon)^3}+\frac{2}{(b(y)-\lambda+i\iota\epsilon)^2}\Biggl[
+ \left(-\frac{b'''}{(b')^2}+\frac{(b'')^2}{(b')^3}\right)\psi \notag\\
+&\hspace{85pt}+\frac{2b''}{(b')^2}\partial_y\psi
+ +\frac{\omega_{0k}'}{(b')^2}
+ -\frac{b''\omega_{0k}}{(b')^3}
+ -\frac{3b''}{(b')^2}D_\lambda\psi\Biggr]\Biggr\} \notag\\
+&+\chi''\frac{b''\psi-\omega_{0k}}{(b')^2(b(y)-\lambda+i\iota\epsilon)^2}.\notag
+\end{align}
+
+%     \begin{align}\label{ndR30}
+%             &\mathcal{R}^\iota_{3,0,\epsilon}(y,\lambda)=\left(\partial_y^2-k^2-\frac{b''(y)}{b(y)-\lambda+i\iota\epsilon}\right)\left(\partial_\lambda^3\psi_{k,\epsilon}^{\iota}(y,\lambda)-\mathcal{S}^\iota_{3,\epsilon}\right)\notag \notag\\
+%             &=(1-\chi)\left\{
+%  \begin{aligned}
+%  &\left[\frac{3b''b^{(4)}+6(b''')^2}{(b')^4}
+%        -\frac{42(b'')^2b'''}{(b')^5}
+%        +\frac{42(b'')^4}{(b')^6}\right]\psi \notag\\[-2pt]
+%  &+\left[-\frac{3b^{(4)}}{(b')^4}
+%        +\frac{30b''b'''}{(b')^5}
+%        -\frac{42(b'')^3}{(b')^6}\right]\omega_{0k} \notag\\[-2pt]
+%  &+\left[-\frac{6b'''}{(b')^4}
+%        +\frac{12(b'')^2}{(b')^5}\right]\omega_{0k}'
+%  +\left[\frac{6b''b'''}{(b')^4}
+%        -\frac{12(b'')^3}{(b')^5}\right]D_\lambda\psi
+%  \end{aligned}\right\}
+%  \frac{\log(b-\lambda+i\iota\epsilon)}
+%       {b-\lambda+i\iota\epsilon}\notag \notag\\
+%  &\quad-\left\{
+%  \begin{aligned}
+%  &\partial_y^2\left(-\frac{(1-\chi)b''}{(b')^3}\right)
+%    \partial_y\psi
+%  +2k^2\partial_y\left(-\frac{(1-\chi)b''}{(b')^3}\right)\psi \notag\\[-2pt]
+%  &+\partial_y^2\left(-\frac{2(1-\chi)\omega_{0k}'}{(b')^3}\right)
+%  +\frac{2k^2(1-\chi)}{(b')^3}\omega_{0k}' \notag\\[-2pt]
+%  &+\partial_y^2\left\{(1-\chi)\left[
+%  \frac{2b'''}{(b')^3}-\frac{3(b'')^2}{(b')^4}\right]\right\}\psi
+%  +2\partial_y\left\{(1-\chi)\left[
+%  \frac{2b'''}{(b')^3}-\frac{3(b'')^2}{(b')^4}\right]\right\}
+%  \partial_y\psi \notag\\[-2pt]
+%  &+\partial_y^2\left(
+%  \frac{3(1-\chi)b''\omega_{0k}}{(b')^4}\right)
+%  -\frac{3k^2(1-\chi)b''}{(b')^4}\omega_{0k} \notag\\[-2pt]
+%  &+\partial_y^2\left(
+%  \frac{3(1-\chi)b''}{(b')^3}\right)D_\lambda\psi
+%  +2\partial_y\left(
+%  \frac{3(1-\chi)b''}{(b')^3}\right)
+%  \partial_yD_\lambda\psi \notag\\[-2pt]
+%  &+\frac{3(1-\chi)b''}{(b')^3}\left[
+%  \frac{b'''}{b'}(D_\lambda\psi-\partial_y\psi)
+%  +\frac{2b''}{b'}(\partial_yD_\lambda\psi-k^2\psi)
+%  -\frac{2(b'')^2}{(b')^2}
+%   (D_\lambda\psi-\partial_y\psi)\right] \notag\\[-2pt]
+%  &+2b'\partial_y\Biggl\{(1-\chi)\Biggl[-\frac{12b''}{(b')^5}\omega_{0k}'+\left(\frac{k^2}{(b')^4}-\frac{4b'''}{(b')^5}+\frac{15(b'')^2}{(b')^6}\right)\omega_{0k}+\frac{3}{(b')^4}\omega_{0k}''\Biggr]\Biggr\} \notag\\
+%  &+2b'\partial_y\Biggl\{(1-\chi)\Biggl[\left(-\frac{3b^{(4)}}{(b')^4}
+%  +\frac{16b''b'''}{(b')^5}
+%  -\frac{15(b'')^3}{(b')^6}
+%  -\frac{k^2b''}{(b')^4}\right)\psi-\frac{3b''}{(b')^4}D_\lambda^2\psi\Biggr]\Biggr\} \notag\\
+%  &+2b'\partial_y\Biggl\{(1-\chi)\left(-\frac{6b'''}{(b')^4}
+%  +\frac{12(b'')^2}{(b')^5}\right)D_\lambda\psi\Biggr\}-b''(1-\chi)\frac{3b''}{(b')^4}D_\lambda^2\psi \notag\\
+%  &+b''(1-\chi)\Biggl\{\left[-\frac{3b^{(4)}}{(b')^4}
+%  +\frac{16b''b'''}{(b')^5}
+%  -\frac{15(b'')^3}{(b')^6}
+%  -\frac{k^2b''}{(b')^4}\right]\psi+\left[-\frac{6b'''}{(b')^4}
+%  +\frac{12(b'')^2}{(b')^5}\right]D_\lambda\psi\Biggr\} \notag\\
+%  &+b''(1-\chi)\Biggl\{
+%  -\frac{12b''}{(b')^5}\omega_{0k}'+\left[\frac{k^2}{(b')^4}
+%  -\frac{4b'''}{(b')^5}
+%  +\frac{15(b'')^2}{(b')^6}\right]\omega_{0k}+\frac{3}{(b')^4}\omega_{0k}''\Biggr\} \notag\\[-2pt]
+%  \end{aligned}\right\}
+%  \frac{1}{b-\lambda+i\iota\epsilon}
+%  \notag \notag\\
+% &\quad-\left\{
+%  \begin{aligned}
+%  &\partial_y^2\left(
+%  -\frac{12(1-\chi)b''\omega_{0k}'}{(b')^5}\right)
+%  +\frac{12k^2(1-\chi)b''}{(b')^5}\omega_{0k}'+\partial_y^2\left\{(1-\chi)\left[
+%  \frac{k^2}{(b')^4}
+%  -\frac{4b'''}{(b')^5}
+%  +\frac{15(b'')^2}{(b')^6}\right]\omega_{0k}\right\} \notag\\[-2pt]
+%  &-k^2(1-\chi)\left[
+%  \frac{k^2}{(b')^4}
+%  -\frac{4b'''}{(b')^5}
+%  +\frac{15(b'')^2}{(b')^6}\right]\omega_{0k}+\partial_y^2\left\{(1-\chi)\left[
+%  -\frac{3b^{(4)}}{(b')^4}
+%  +\frac{16b''b'''}{(b')^5}
+%  -\frac{15(b'')^3}{(b')^6}
+%  -\frac{k^2b''}{(b')^4}\right]\right\}\psi \notag\\[-2pt]
+%  &+2\partial_y\left\{(1-\chi)\left[
+%  -\frac{3b^{(4)}}{(b')^4}
+%  +\frac{16b''b'''}{(b')^5}
+%  -\frac{15(b'')^3}{(b')^6}
+%  -\frac{k^2b''}{(b')^4}\right]\right\}\partial_y\psi \notag\\[-2pt]
+%  &+\partial_y^2\left\{(1-\chi)\left[
+%  -\frac{6b'''}{(b')^4}
+%  +\frac{12(b'')^2}{(b')^5}\right]\right\}D_\lambda\psi+2\partial_y\left\{(1-\chi)\left[
+%  -\frac{6b'''}{(b')^4}
+%  +\frac{12(b'')^2}{(b')^5}\right]\right\}
+%  \partial_yD_\lambda\psi \notag\\[-2pt]
+%  &+(1-\chi)\left[
+%  -\frac{6b'''}{(b')^4}
+%  +\frac{12(b'')^2}{(b')^5}\right]\left[
+%  \frac{b'''}{b'}(D_\lambda\psi-\partial_y\psi)
+%  +\frac{2b''}{b'}(\partial_yD_\lambda\psi-k^2\psi)
+%  -\frac{2(b'')^2}{(b')^2}
+%   (D_\lambda\psi-\partial_y\psi)\right] \notag\\[-2pt]
+%  &+\partial_y^2\left(
+%  -\frac{3(1-\chi)b''}{(b')^4}\right)D_\lambda^2\psi
+%  +2\partial_y\left(
+%  -\frac{3(1-\chi)b''}{(b')^4}\right)
+%  \partial_yD_\lambda^2\psi \notag\\[-2pt]
+%  &-\frac{12(1-\chi)(b'')^2}{(b')^5}
+%  \biggl[
+%  \partial_yD_\lambda^2\psi-k^2D_\lambda\psi
+%  -\frac{b'''}{b'}(D_\lambda\psi-\partial_y\psi)
+%  -\frac{2b''}{b'}(\partial_yD_\lambda\psi-k^2\psi)
+%  +\frac{2(b'')^2}{(b')^2}
+%   (D_\lambda\psi-\partial_y\psi)\biggr] \notag\\[-2pt]
+%  &-\frac{3(1-\chi)b''}{(b')^4}\left(-\frac{4(b'')^2}{(b')^2}+\frac{2b'''}{b'}\right)(D_\lambda^2\psi-\partial_yD_\lambda\psi)-\frac{6(1-\chi)b''b'''}{(b')^5}(\partial_yD_\lambda\psi-k^2\psi) \notag\\
+%  &+\frac{6(1-\chi)(b'')^3}{(b')^6}\biggl[
+%  D_\lambda^2\psi-2\partial_yD_\lambda\psi+k^2\psi
+%  +\frac{b''}{b'}(D_\lambda\psi-\partial_y\psi)\biggr] \notag\\
+%  &-\frac{3(1-\chi)b''}{(b')^4}\left(-\frac{2b''b'''}{(b')^2}+\frac{b^{(4)}}{b'}\right)(D_\lambda\psi-\partial_y\psi)+\partial_y^2\left(
+%  \frac{3(1-\chi)\omega_{0k}''}{(b')^4}\right)
+%  -\frac{3k^2(1-\chi)}{(b')^4}\omega_{0k}''
+%  \end{aligned}\right\}
+%  \log(b-\lambda+i\iota\epsilon)\notag \notag\\
+%             &\quad+\chi\left\{\begin{aligned}
+%             &6\bigl[b''\psi-\omega_{0k}\bigr]\frac{1}{(b-\lambda+i\iota\epsilon)^4}+\left[\frac{6b''}{b'}(D_\lambda\psi-\partial_y\psi)+\frac{3b''}{(b')^2}(b''\psi-\omega_{0k})\right]\frac{1}{(b-\lambda+i\iota\epsilon)^3} \notag\\
+%             &+\frac{3b''}{(b')^2}\left[D_\lambda^2\psi-2\partial_yD_\lambda\psi+k^2\psi+\frac{b''}{b'}(D_\lambda\psi-\partial_y\psi)\right]\frac{1}{(b-\lambda+i\iota\epsilon)^2}
+%             \end{aligned}\right\}\notag \notag\\
+%             &\quad+\chi'\left\{\begin{aligned}
+%                 &-\frac{4}{b'}(b''\psi-\omega_{0k})\frac{1}{(b-\lambda+i\iota\epsilon)^3}+2\partial_y\left(\frac{b''\psi-\omega_{0k}}{(b')^2}\right)\frac{1}{(b-\lambda+i\iota\epsilon)^2} \notag\\
+%                 &-2b'\left\{-\frac{b''}{(b')^3}\partial_y\psi-\frac{2}{(b')^3}\omega_{0k}'+\left[\frac{2b'''}{(b')^3}-\frac{3(b'')^2}{(b')^4}\right]\psi+\frac{3b''}{(b')^4}\omega_{0k}+\frac{3b''}{(b')^3}D_\lambda\psi\right\}\frac{1}{(b-\lambda+i\iota\epsilon)^2}
+%             \end{aligned}\right\}\notag \notag\\
+%             &\quad+\chi''\frac{b''\psi-\omega_{0k}}{(b')^2}\frac{1}{(b-\lambda+i\iota\epsilon)^2}
+%     \end{align}
+\item For $\mathcal{R}_{2,1,\epsilon}^\iota(y,\lambda)=\left(\partial_y^2-k^2-\frac{b''(y)}{b(y)-\lambda+i\iota\epsilon}\right)\left(\partial_\lambda^2D_\lambda\psi_{k, \epsilon}^\iota- \mathcal{S}_{2,1, \epsilon}^\iota\right)$:
+    \begin{equation}\label{ndR21}
+        \begin{split}
+            \mathcal{R}_{2,1,\epsilon}^{\iota}(y,\lambda)=&c_1^{(2,1)}(y)\frac{\log(b(y)-\lambda+i\iota\epsilon)}{b(y)-\lambda+i\iota\epsilon}+\frac{c_2^{(2,1)}(y)+\mathfrak{c}_1^{(2,1)}(y)\partial_yD_\lambda^2\psi+\mathfrak{c}_2^{(2,1)}(y)\partial_yD_\lambda\psi+\mathfrak{c}_3^{(2,1)}(y)\partial_y\psi}{b(y)-\lambda+i\iota\epsilon} \\
+            &+c_3^{(2,1)}(y)\log(b(y)-\lambda+i\iota\epsilon)+c_4^{(2,1)}(y),
+        \end{split}
+    \end{equation}
+with
+\begin{align}
+  c_1^{(2,1)}(y,\lambda)=&b'c_1^{(3,0)} -\Bigl[(1-\chi)\frac{2b'b'''-3(b'')^2}{(b')^4}\Bigl(b'''-\frac{2(b'')^2}{b'}\Bigr) +\frac{(1-\chi)b''}{(b')^3}\Bigl(b^{(4)}-\frac{6b''b'''}{b'} \notag\\
+ &+\frac{6(b'')^3}{(b')^2}\Bigr)\Bigr]\psi -\frac{(1-\chi)b''}{(b')^3}\Bigl(2b'''-\frac{4(b'')^2}{b'}\Bigr)D_\lambda\psi +\Bigl(b''\frac{3(1-\chi)b''}{(b')^4} \notag\\
+ &\quad +(1-\chi)\frac{2b'b'''-3(b'')^2}{(b')^4}-\frac{4b''}{b'}\frac{(1-\chi)b''}{(b')^3}\Bigr)\omega_{0k}' \notag\\
+ &+\Bigl[(1-\chi)\frac{k^2(b')^2b''+(b')^2b^{(4)}-4b'b''b'''+3(b'')^3}{(b')^5} \notag\\
+ &\quad +b''\left[-(1-\chi)\frac{k^2(b')^2-b'b'''+3(b'')^2}{(b')^5}\right]-\frac{2b''}{b'}(1-\chi)\frac{2b'b'''-3(b'')^2}{(b')^4} \notag\\
+ &-\Bigl(\frac{2b'''}{b'}-\frac{6(b'')^2}{(b')^2}\Bigr)\frac{(1-\chi)b''}{(b')^3}\Bigr]\omega_{0k}, \notag\\
+ c_2^{(2,1)}(y)={}&b'c_2^{(3,0)} +\Bigl(\frac{(1-\chi)b'''}{(b')^2} -2b'\partial_y\left[\frac{(1-\chi)b''}{(b')^3}\right] -b''\frac{(1-\chi)b''}{(b')^3}\Bigr)D_\lambda^2\psi \notag\\
+ &+\Bigl[\frac{(1-\chi)b''b'''}{(b')^3} +2\frac{(1-\chi)b''}{(b')^2}\Bigl(\frac{b'''}{b'}-\frac{2(b'')^2}{(b')^2}\Bigr) +2\partial_y^2\left[\frac{(1-\chi)b''}{(b')^2}\right] \notag\\
+ &\quad -2b'\partial_y\left[(1-\chi)\frac{2b'b'''-3(b'')^2}{(b')^4}\right] -b''(1-\chi)\frac{2b'b'''-3(b'')^2}{(b')^4}\Bigr]D_\lambda\psi \notag\\
+ &+\Bigl[\frac{k^2(1-\chi)b'''}{(b')^2} -2k^2\partial_y\left[\frac{(1-\chi)b''}{(b')^2}\right] -\partial_y^2\left[(1-\chi)\left(-\frac{b'''}{(b')^2}+\frac{(b'')^2}{(b')^3}\right)\right] \notag\\
+ &-\frac{4k^2b''}{b'}\frac{(1-\chi)b''}{(b')^2} -2b'\partial_y\left[(1-\chi)\frac{k^2(b')^2b''+(b')^2b^{(4)}-4b'b''b'''+3(b'')^3}{(b')^5}\right] \notag\\
+ &\quad -b''(1-\chi)\frac{k^2(b')^2b''+(b')^2b^{(4)}-4b'b''b'''+3(b'')^3}{(b')^5}\Bigr]\psi +( -\frac{1-\chi}{(b')^2} \notag\\
+ &\quad +2b'\frac{1-\chi}{(b')^3})\omega_{0k}''' +( -2\partial_y\left[\frac{1-\chi}{(b')^2}\right] +\frac{(1-\chi)b''}{(b')^3} +2b'\partial_y\left[\frac{1-\chi}{(b')^3}\right] \notag\\
+ &\quad -2b'\frac{3(1-\chi)b''}{(b')^4} +b''\frac{1-\chi}{(b')^3})\omega_{0k}'' +(k^2\frac{1-\chi}{(b')^2} -\partial_y^2\left[\frac{1-\chi}{(b')^2}\right] \notag\\
+ &\quad +2\partial_y\left[\frac{(1-\chi)b''}{(b')^3}\right] -2b'\partial_y\left[\frac{3(1-\chi)b''}{(b')^4}\right] \notag\\
+ &\quad -2b'\left[-(1-\chi)\frac{k^2(b')^2-b'b'''+3(b'')^2}{(b')^5}\right] -b''\frac{3(1-\chi)b''}{(b')^4})\omega_{0k}' +( \notag\\
+ &\quad -k^2\frac{(1-\chi)b''}{(b')^3} +\partial_y^2\left[\frac{(1-\chi)b''}{(b')^3}\right] \notag\\
+ &\quad -2b'\partial_y\left[-(1-\chi)\frac{k^2(b')^2-b'b'''+3(b'')^2}{(b')^5}\right] \notag\\
+ &\quad -b''\left[-(1-\chi)\frac{k^2(b')^2-b'b'''+3(b'')^2}{(b')^5}\right])\omega_{0k}, \notag\\
+ \mathfrak{c}_1^{(2,1)}(y)={}&b'\mathfrak{c}_1^{(3,0)} -2b'\frac{(1-\chi)b''}{(b')^3}, \notag\\
+ \mathfrak{c}_2^{(2,1)}(y)={}&b'\mathfrak{c}_2^{(3,0)} -\frac{2(1-\chi)b'''}{(b')^2}+\frac{4b''}{b'}\frac{(1-\chi)b''}{(b')^2} +4\partial_y\left[\frac{(1-\chi)b''}{(b')^2}\right] \notag\\
+ &\quad -2b'(1-\chi)\frac{2b'b'''-3(b'')^2}{(b')^4}, \notag\\
+ \mathfrak{c}_3^{(2,1)}(y)={}&b'\mathfrak{c}_3^{(3,0)} -\frac{(1-\chi)b''b'''}{(b')^3} -\partial_y^2\left[\frac{(1-\chi)b''}{(b')^2}\right] -2\partial_y\left[(1-\chi)\left(-\frac{b'''}{(b')^2}+\frac{(b'')^2}{(b')^3}\right)\right] \notag\\
+ &-2\frac{(1-\chi)b''}{(b')^2}\Bigl(\frac{b'''}{b'}-\frac{2(b'')^2}{(b')^2}\Bigr) \notag\\
+ &\quad -2b'(1-\chi)\frac{k^2(b')^2b''+(b')^2b^{(4)}-4b'b''b'''+3(b'')^3}{(b')^5}, \notag\\
+ c_3^{(2,1)}(y)={}&b'c_3^{(3,0)} -\frac{3(1-\chi)b''}{(b')^4}(\omega_{0k}'''-k^2\omega_{0k}') -2\partial_y\left[\frac{3(1-\chi)b''}{(b')^4}\right]\omega_{0k}'' \notag\\
+ &\quad -\partial_y^2\left[\frac{3(1-\chi)b''}{(b')^4}\right]\omega_{0k}' \notag\\
+ &-2\partial_y\left[(1-\chi)\frac{k^2(b')^2b''+(b')^2b^{(4)}-4b'b''b'''+3(b'')^3}{(b')^5}\right]\partial_y\psi \notag\\
+ &\quad -\partial_y^2\left[(1-\chi)\frac{k^2(b')^2b''+(b')^2b^{(4)}-4b'b''b'''+3(b'')^3}{(b')^5}\right]\psi \notag\\
+ &-\left[-(1-\chi)\frac{k^2(b')^2-b'b'''+3(b'')^2}{(b')^5}\right](\omega_{0k}''-k^2\omega_{0k}) \notag\\
+ &-2\partial_y\left[-(1-\chi)\frac{k^2(b')^2-b'b'''+3(b'')^2}{(b')^5}\right]\omega_{0k}' \notag\\
+ &\quad -\partial_y^2\left[-(1-\chi)\frac{k^2(b')^2-b'b'''+3(b'')^2}{(b')^5}\right]\omega_{0k} \notag\\
+ &-(1-\chi)\frac{2b'b'''-3(b'')^2}{(b')^4}\Bigl[\Bigl(\frac{b'''}{b'}-\frac{2(b'')^2}{(b')^2}\Bigr)
+                  (D_\lambda\psi-\partial_y\psi) \notag\\
+ &+\frac{2b''}{b'}(\partial_yD_\lambda\psi-k^2\psi)\Bigr] -2\partial_y\left[(1-\chi)\frac{2b'b'''-3(b'')^2}{(b')^4}\right]\partial_yD_\lambda\psi \notag\\
+ &\quad -\partial_y^2\left[(1-\chi)\frac{2b'b'''-3(b'')^2}{(b')^4}\right]D_\lambda\psi \notag\\
+ &-\frac{4b''}{b'}\frac{(1-\chi)b''}{(b')^3}\Bigl[\begin{aligned}
+       &\partial_yD_\lambda^2\psi-k^2D_\lambda\psi
+       +\Bigl(-\frac{b'''}{b'}+\frac{2(b'')^2}{(b')^2}\Bigr)
+                   (D_\lambda\psi-\partial_y\psi) \notag\\
+       &-\frac{2b''}{b'}(\partial_yD_\lambda\psi-k^2\psi)
+       \end{aligned}\Bigr] \notag\\
+ &-\frac{(1-\chi)b''}{(b')^3}\Bigl[\Bigl(-\frac{4(b'')^2}{(b')^2}+\frac{2b'''}{b'}\Bigr)
+                   (D_\lambda^2\psi-\partial_yD_\lambda\psi) +\frac{2b'''}{b'}(\partial_yD_\lambda\psi-k^2\psi)\Bigr] \notag\\
+ &+\frac{2(b'')^2}{(b')^2}\frac{(1-\chi)b''}{(b')^3}
+       \Bigl[D_\lambda^2\psi-2\partial_yD_\lambda\psi+k^2\psi +\frac{b''}{b'}(D_\lambda\psi-\partial_y\psi)\Bigr] \notag\\
+ &-\frac{(1-\chi)b''}{(b')^3}\Bigl(-\frac{2b''b'''}{(b')^2}+\frac{b^{(4)}}{b'}\Bigr)
+             (D_\lambda\psi-\partial_y\psi) -2\partial_y\left[\frac{(1-\chi)b''}{(b')^3}\right]\partial_yD_\lambda^2\psi \notag\\
+ &\quad -\partial_y^2\left[\frac{(1-\chi)b''}{(b')^3}\right]D_\lambda^2\psi +\frac{1-\chi}{(b')^3}(\omega_{0k}^{(4)}-k^2\omega_{0k}'') +2\partial_y\left[\frac{1-\chi}{(b')^3}\right]\omega_{0k}''' \notag\\
+ &\quad +\partial_y^2\left[\frac{1-\chi}{(b')^3}\right]\omega_{0k}'', \notag\\
+ c_4^{(2,1)}(y)={}&2b''\partial_y r_{3,0,\epsilon}^{\iota}
+ +b'''r_{3,0,\epsilon}^{\iota} \notag\\
+ &+\chi\Bigl[\frac{2(b''D_\lambda\psi+b'''\psi-\omega_{0k}')}{(b(y)-\lambda+i\iota\epsilon)^3}+\frac{2(b''\partial_\lambda D_\lambda\psi+b'''\partial_\lambda\psi)}{(b(y)-\lambda+i\iota\epsilon)^2}+\frac{b'''\partial_\lambda^2\psi}{b(y)-\lambda+i\iota\epsilon}
+       \Bigr] \notag\\
+ &+2\chi'\Bigl[
+       -\frac{b''D_\lambda\psi+b'''\psi-\omega_{0k}'}{b'}
+       +\frac{b''(b''\psi-\omega_{0k})}{(b')^2}\Bigr] \frac{1}{(b(y)-\lambda+i\iota\epsilon)^2}.\notag
+\end{align}
+
+
+%     \begin{align}\label{ndR21}
+%             &\mathcal{R}_{2,1,\epsilon}^\iota(y,\lambda)=\left(\partial_y^2-k^2-\frac{b''(y)}{b(y)-\lambda+i\iota\epsilon}\right)\left(\partial_\lambda^2D_\lambda\psi_{k, \epsilon}^\iota- \mathcal{S}_{2,1, \epsilon}^\iota\right)\notag \notag\\
+%             =&-(1-\chi)\left\{\begin{aligned}
+%                 &-\frac{3(b'')^2}{(b')^4}\omega_{0k}'
+% -\frac{k^2(b')^2b''+(b')^2b^{(4)}-4b'b''b'''+3(b'')^3}{(b')^5}\omega_{0k}+\frac{b''}{(b')^3}\omega_{0k}''
+% \notag \notag\\[-2pt]
+% &+\frac{b''\bigl(k^2(b')^2-b'b'''+3(b'')^2\bigr)}{(b')^5}\omega_{0k}
+% +\frac{2b'b'''-3(b'')^2}{(b')^4}
+% \Biggl[
+% b'''\psi-\omega_{0k}'
+% -\frac{2b''}{b'}\bigl(b''\psi-\omega_{0k}\bigr)
+% \Biggr]
+% \notag \notag\\[-2pt]
+% &+\frac{b''}{(b')^3}\Biggl[
+% \left(b^{(4)}-\frac{6b''b'''}{b'}
+% +\frac{6(b'')^3}{(b')^2}\right)\psi
+% +\left(2b'''-\frac{4(b'')^2}{b'}\right)D_\lambda\psi\Biggr] \notag\\
+% &+\frac{b''}{(b')^3}\Biggl[\left(\frac{2b'''}{b'}-\frac{6(b'')^2}{(b')^2}\right)\omega_{0k}
+% +\frac{4b''}{b'}\omega_{0k}'-\omega_{0k}''
+% \Biggr]\end{aligned}\right\}
+%  \frac{\log(b-\lambda+i\iota\epsilon)}
+%  {b-\lambda+i\iota\epsilon}
+%    \notag\\
+% &+\left\{\begin{aligned}
+%     &\frac{b'''}{(b')^2}\Biggl[
+% D_\lambda^2\psi-2\partial_yD_\lambda\psi+k^2\psi
+% +\frac{b''}{b'}\bigl(D_\lambda\psi-\partial_y\psi\bigr)
+% \Biggr]
+% \notag \notag\\[-2pt]
+% &
+% -2k^2\partial_y\left((1-\chi)\frac{b''}{(b')^2}\right)\psi
+% -\partial_y^2\left((1-\chi)\frac{b''}{(b')^2}\right)\partial_y\psi
+% \notag \notag\\[-2pt]
+% &-(1-\chi)\frac{1}{(b')^2}
+% \bigl(\omega_{0k}'''-k^2\omega_{0k}'\bigr)
+% -2\partial_y\left((1-\chi)\frac{1}{(b')^2}\right)\omega_{0k}''
+% -\partial_y^2\left((1-\chi)\frac{1}{(b')^2}\right)\omega_{0k}'
+% \notag \notag\\[-2pt]
+% &-2\partial_y\left[(1-\chi)
+% \left(-\frac{b'''}{(b')^2}+\frac{(b'')^2}{(b')^3}\right)\right]\partial_y\psi
+% -\partial_y^2\left[(1-\chi)
+% \left(-\frac{b'''}{(b')^2}+\frac{(b'')^2}{(b')^3}\right)\right]\psi
+% \notag \notag\\[-2pt]
+% &+(1-\chi)\frac{b''}{(b')^3}
+% \bigl(\omega_{0k}''-k^2\omega_{0k}\bigr)
+% +2\partial_y\left((1-\chi)\frac{b''}{(b')^3}\right)\omega_{0k}'
+% +\partial_y^2\left((1-\chi)\frac{b''}{(b')^3}\right)\omega_{0k}
+% \notag \notag\\[-2pt]
+% &+2(1-\chi)\frac{b''}{(b')^2}
+% \Biggl[
+% \frac{b'''}{b'}\bigl(D_\lambda\psi-\partial_y\psi\bigr)
+% +\frac{2b''}{b'}\bigl(\partial_yD_\lambda\psi-k^2\psi\bigr)
+% -\frac{2(b'')^2}{(b')^2}\bigl(D_\lambda\psi-\partial_y\psi\bigr)
+% \Biggr]
+% \notag \notag\\[-2pt]
+% &+2\partial_y\left((1-\chi)\frac{2b''}{(b')^2}\right)
+% \partial_yD_\lambda\psi
+% +\partial_y^2\left((1-\chi)\frac{2b''}{(b')^2}\right)D_\lambda\psi+2b'\partial_y\Biggl((1-\chi)\frac{1}{(b')^3}\omega_{0k}''
+% \Biggr)
+% \notag \notag\\[-2pt]
+% &-2b'\partial_y\Biggl[(1-\chi)\Biggl(
+% \frac{3b''}{(b')^4}\omega_{0k}'
+% +\frac{k^2(b')^2b''+(b')^2b^{(4)}-4b'b''b'''+3(b'')^3}{(b')^5}\psi\Biggr)\Biggr]
+% \notag \notag\\[-2pt]
+% &-2b'\partial_y\Biggl[(1-\chi)\Biggl(-\frac{k^2(b')^2-b'b'''+3(b'')^2}{(b')^5}\omega_{0k}
+% +\frac{2b'b'''-3(b'')^2}{(b')^4}D_\lambda\psi
+% +\frac{b''}{(b')^3}D_\lambda^2\psi
+% \Biggr)\Biggr]
+% \notag \notag\\[-2pt]
+% &-b''(1-\chi)\Biggl[
+% \frac{3b''}{(b')^4}\omega_{0k}'
+% +\frac{k^2(b')^2b''+(b')^2b^{(4)}-4b'b''b'''+3(b'')^3}{(b')^5}\psi\Biggr]
+% \notag \notag\\[-2pt]
+% &-b''(1-\chi)\Biggl[-\frac{k^2(b')^2-b'b'''+3(b'')^2}{(b')^5}\omega_{0k}
+% +\frac{2b'b'''-3(b'')^2}{(b')^4}D_\lambda\psi
+% +\frac{b''}{(b')^3}D_\lambda^2\psi
+% -\frac{1}{(b')^3}\omega_{0k}''
+% \Biggr]
+% \end{aligned}
+%  \right\}\frac{1}{b-\lambda+i\iota\epsilon}
+%    \notag\\
+% &-\left\{\begin{aligned}
+%     &(1-\chi)\frac{3b''}{(b')^4}
+% \bigl(\omega_{0k}'''-k^2\omega_{0k}'\bigr)
+% +2\partial_y\left((1-\chi)\frac{3b''}{(b')^4}\right)\omega_{0k}''
+% +\partial_y^2\left((1-\chi)\frac{3b''}{(b')^4}\right)\omega_{0k}'
+% \notag \notag\\[-2pt]
+% &+2\partial_y\left[(1-\chi)
+% \frac{k^2(b')^2b''+(b')^2b^{(4)}-4b'b''b'''+3(b'')^3}{(b')^5}\right]\partial_y\psi
+% \notag \notag\\[-2pt]
+% &+\partial_y^2\left[(1-\chi)
+% \frac{k^2(b')^2b''+(b')^2b^{(4)}-4b'b''b'''+3(b'')^3}{(b')^5}\right]\psi
+% \notag \notag\\[-2pt]
+% &-(1-\chi)\frac{k^2(b')^2-b'b'''+3(b'')^2}{(b')^5}
+% \bigl(\omega_{0k}''-k^2\omega_{0k}\bigr)
+% \notag \notag\\[-2pt]
+% &+2\partial_y\left[-(1-\chi)
+% \frac{k^2(b')^2-b'b'''+3(b'')^2}{(b')^5}\right]\omega_{0k}'
+% +\partial_y^2\left[-(1-\chi)
+% \frac{k^2(b')^2-b'b'''+3(b'')^2}{(b')^5}\right]\omega_{0k}
+% \notag \notag\\[-2pt]
+% &+(1-\chi)\frac{2b'b'''-3(b'')^2}{(b')^4}
+% \Biggl[
+% \frac{b'''}{b'}\bigl(D_\lambda\psi-\partial_y\psi\bigr)
+% +\frac{2b''}{b'}\bigl(\partial_yD_\lambda\psi-k^2\psi\bigr)
+% -\frac{2(b'')^2}{(b')^2}\bigl(D_\lambda\psi-\partial_y\psi\bigr)
+% \Biggr]
+% \notag \notag\\[-2pt]
+% &+2\partial_y\left[(1-\chi)
+% \frac{2b'b'''-3(b'')^2}{(b')^4}\right]\partial_yD_\lambda\psi
+% +\partial_y^2\left[(1-\chi)
+% \frac{2b'b'''-3(b'')^2}{(b')^4}\right]D_\lambda\psi
+% \notag \notag\\[-2pt]
+% &+(1-\chi)\frac{4(b'')^2}{(b')^4}\Biggl\{
+% \partial_yD_\lambda^2\psi-k^2D_\lambda\psi
+% +\left(-\frac{b'''}{b'}+\frac{2(b'')^2}{(b')^2}\right)\bigl(D_\lambda\psi-\partial_y\psi\bigr)
+% -\frac{2b''}{b'}\bigl(\partial_yD_\lambda\psi-k^2\psi\bigr)\Biggr\}\notag \notag\\[-2pt]
+% &+(1-\chi)\frac{b''}{(b')^3}\Biggl[
+% -\frac{4(b'')^3}{(b')^5}
+% \bigl(D_\lambda^2\psi-\partial_yD_\lambda\psi\bigr)
+% +\frac{2b'''}{b'}
+% \bigl(D_\lambda^2\psi-\partial_yD_\lambda\psi\bigr)+\frac{2b'''}{b'}\bigl(\partial_yD_\lambda\psi-k^2\psi\bigr)\Biggr]
+% \notag \notag\\[-2pt]
+% &-(1-\chi)\frac{2(b'')^3}{(b')^5}\Biggl\{
+% D_\lambda^2\psi-2\partial_yD_\lambda\psi+k^2\psi
+% +\frac{b''}{b'}\bigl(D_\lambda\psi-\partial_y\psi\bigr)
+% \Biggr\} \notag\\
+% &+(1-\chi)\frac{b''}{(b')^3}\Biggl[
+% -\frac{2b''b'''}{(b')^2}\bigl(D_\lambda\psi-\partial_y\psi\bigr)
+% +\frac{b^{(4)}}{b'}\bigl(D_\lambda\psi-\partial_y\psi\bigr)
+% \Biggr]
+% \notag \notag\\[-2pt]
+% &+2\partial_y\left((1-\chi)\frac{b''}{(b')^3}\right)
+% \partial_yD_\lambda^2\psi
+% +\partial_y^2\left((1-\chi)\frac{b''}{(b')^3}\right)D_\lambda^2\psi
+% \notag \notag\\[-2pt]
+% &-(1-\chi)\frac{1}{(b')^3}
+% \bigl(\omega_{0k}^{(4)}-k^2\omega_{0k}''\bigr)
+% +2\partial_y\left(-(1-\chi)\frac{1}{(b')^3}\right)\omega_{0k}'''
+% +\partial_y^2\left(-(1-\chi)\frac{1}{(b')^3}\right)\omega_{0k}''
+% \end{aligned}
+%  \right\}\log(b-\lambda+i\iota\epsilon) \notag\\
+%             &+\chi\left\{\begin{aligned}
+%             &2\bigl(b''D_\lambda\psi+b'''\psi-\omega_{0k}'\bigr)\frac{1}{(b-\lambda+i\iota\epsilon)^3} \notag\\
+%             &+\Biggl[
+% \frac{2b''}{b'}\bigl(D_\lambda^2\psi-\partial_yD_\lambda\psi\bigr)
+% +\frac{2b'''}{b'}\bigl(D_\lambda\psi-\partial_y\psi\bigr)
+% +\frac{b'''}{(b')^2}\bigl(b''\psi-\omega_{0k}\bigr)
+% \Biggr]\frac{1}{(b-\lambda+i\iota\epsilon)^2}+b'''\partial_\lambda^3\psi+2b''\partial_y\partial_\lambda^3\psi
+%             \end{aligned}\right\}\notag \notag\\
+%             &+\chi'\left\{\begin{aligned}
+%             &4\bigl(b''\psi-\omega_{0k}\bigr)\frac{1}{(b-\lambda+i\iota\epsilon)^3}+2\partial_y\left(-\frac{b''}{b'}\psi+\frac{1}{b'}\omega_{0k}\right)\frac{1}{(b-\lambda+i\iota\epsilon)^2} \notag\\
+%             &-2b'\Biggl[
+% \frac{b''}{(b')^2}\partial_y\psi
+% +\frac{1}{(b')^2}\omega_{0k}'
+% +\left(-\frac{b'''}{(b')^2}+\frac{(b'')^2}{(b')^3}\right)\psi
+% -\frac{b''}{(b')^3}\omega_{0k}
+% -\frac{2b''}{(b')^2}D_\lambda\psi
+% \Biggr]\frac{1}{(b-\lambda+i\iota\epsilon)^2} \notag\\
+%             &+2b''\partial_\lambda^3\psi+2b'\partial_y\partial_\lambda^3\psi
+%             \end{aligned}\right\}\notag \notag\\
+%             &+\chi''\left(
+% -\frac{b''}{b'}\psi+\frac{1}{b'}\omega_{0k}
+% \right)\frac{1}{(b-\lambda+i\iota\epsilon)^2}+\red{(1-\chi)b'\mathcal{R}_{3,0,\epsilon}^\iota+2\partial_y\big[(1-\chi)b'\big]\partial_y r_{3,0,\epsilon}^\iota+\partial_y^2\big[(1-\chi)b'\big]r_{3,0,\epsilon}^\iota}.
+%     \end{align}
+
+\item For $\mathcal{R}_{1,2,\epsilon}^\iota(y,\lambda)=\left(\partial_y^2-k^2-\frac{b''(y)}{b(y)-\lambda+i\iota\epsilon}\right)\left(\partial_\lambda D_\lambda^2\psi_{k, \epsilon}^\iota- \mathcal{S}_{1,2, \epsilon}^\iota\right)$:
+
+    \begin{equation}\label{ndR12}
+        \begin{split}
+            \mathcal{R}_{1,2,\epsilon}^{\iota}(y,\lambda)=&c_1^{(1,2)}(y)\frac{\log(b(y)-\lambda+i\iota\epsilon)}{b(y)-\lambda+i\iota\epsilon}+\frac{c_2^{(1,2)}(y)+\mathfrak{c}_1^{(1,2)}(y)\partial_yD_\lambda^2\psi+\mathfrak{c}_2^{(1,2)}(y)\partial_yD_\lambda\psi+\mathfrak{c}_3^{(1,2)}(y)\partial_y\psi}{b(y)-\lambda+i\iota\epsilon} \\
+            &+c_3^{(1,2)}(y)\log(b(y)-\lambda+i\iota\epsilon)+c_4^{(1,2)}(y),
+        \end{split}
+    \end{equation}
+with
+\begin{align}
+  c_1^{(1,2)}(y,\lambda)=&-(b')^2c_1^{(3,0)}+2b'c_1^{(2,1)}+b''c_1^{(2,0)}, \notag\\
+c_2^{(1,2)}(y)
+={}&-(b')^2c_2^{(3,0)}+2b'c_2^{(2,1)}+b''c_2^{(2,0)} \notag\\
+&+2k^2b'\left[\partial_y\!\left(\frac{1-\chi}{(b')^2}\right)(b''\psi-\omega_{0k})
++\frac{1-\chi}{(b')^2}(b'''\psi-\omega_{0k}')\right]
++k^2\frac{1-\chi}{(b')^2}b''(b''\psi-\omega_{0k}), \notag\\
+\mathfrak{c}_1^{(1,2)}(y)
+={}&-(b')^2\mathfrak{c}_1^{(3,0)}+2b'\mathfrak{c}_1^{(2,1)}, \notag\\
+\mathfrak{c}_2^{(1,2)}(y)
+={}&-(b')^2\mathfrak{c}_2^{(3,0)}+2b'\mathfrak{c}_2^{(2,1)}
++b''\mathfrak{c}_1^{(2,0)}, \notag\\
+\mathfrak{c}_3^{(1,2)}(y)
+={}&-(b')^2\mathfrak{c}_3^{(3,0)}+2b'\mathfrak{c}_3^{(2,1)}
++b''\mathfrak{c}_2^{(2,0)}+2k^2b'\frac{1-\chi}{(b')^2}b'', \notag\\
+c_3^{(1,2)}(y)
+={}&-(b')^2c_3^{(3,0)}+2b'c_3^{(2,1)}+b''c_3^{(2,0)} \notag\\
+&+k^2\left[2\partial_y\!\left(\frac{(1-\chi)b''}{(b')^2}\right)\partial_y\psi
++\partial_y^2\!\left(\frac{(1-\chi)b''}{(b')^2}\right)\psi-\frac{1-\chi}{(b')^2}\omega_{0k}''\right] \notag\\
+&+k^2\left[-2\partial_y\!\left(\frac{1-\chi}{(b')^2}\right)\omega_{0k}'
++(k^2\frac{1-\chi}{(b')^2}-\partial_y^2\!\left(\frac{1-\chi}{(b')^2}\right))\omega_{0k}\right], \notag\\
+c_4^{(1,2)}(y)
+=&-2(b'')^2r_{3,0,\epsilon}^{\iota}
++4b''\partial_y r_{2,1,\epsilon}^{\iota}
++2b'''r_{2,1,\epsilon}^{\iota}
++2b'''\partial_y r_{2,0,\epsilon}^{\iota}
++b^{(4)}r_{2,0,\epsilon}^{\iota} \notag\\
+&+\chi\Biggl[\frac{b''D_\lambda^2\psi+2b'''D_\lambda\psi
++b^{(4)}\psi-\omega_{0k}''}{(b(y)-\lambda+i\iota\epsilon)^2}+\frac{2b'''\partial_\lambda D_\lambda\psi
++b^{(4)}\partial_\lambda\psi}{b(y)-\lambda+i\iota\epsilon}\Biggr] \notag\\
+&+2\chi'\left[\frac{b''\partial_y\partial_\lambda\psi
++b'''\partial_\lambda\psi}{b(y)-\lambda+i\iota\epsilon}
++\frac{b''(b''\psi-\omega_{0k})}{b'(b(y)-\lambda+i\iota\epsilon)^2}\right] \notag\\
+&+\chi''\frac{b''\partial_\lambda\psi}{b(y)-\lambda+i\iota\epsilon}.\notag
+\end{align}
+
+
+
+%         \begin{align}\label{ndR12}
+%       &\mathcal{R}_{1,2,\epsilon}^\iota(y,\lambda)=\left(\partial_y^2-k^2-\frac{b''(y)}{b(y)-\lambda+i\iota\epsilon}\right)\left(\partial_\lambda D_\lambda^2\psi_{k, \epsilon}^\iota- \mathcal{S}_{1,2, \epsilon}^\iota\right)\notag\\
+%             =&\left\{\begin{aligned}
+%             &\frac{2}{b'}\partial_y(\chi b'')\bigl(D_\lambda^2\psi-\partial_yD_\lambda\psi\bigr)\notag\\
+% &+\frac{2b''}{(b')^3}\partial_y\!\bigl(\chi(b')^2\bigr)
+% \bigl(D_\lambda^2\psi-2\partial_yD_\lambda\psi+k^2\psi\bigr)\notag\\
+% &+\left[\frac{1}{b'}\partial_y^2(\chi b'')
+% +\frac{2(b'')^2}{(b')^4}\partial_y\!\bigl(\chi(b')^2\bigr)\right]
+% \bigl(D_\lambda\psi-\partial_y\psi\bigr)\notag\\
+% &+2k^2b'\partial_y\left[
+% \frac{(1-\chi)(b''\psi-\omega_{0k})}{(b')^2}\right]\notag\\
+% &+\frac{k^2(1-\chi)b''}{(b')^2}(b''\psi-\omega_{0k})
+%             \end{aligned}\right\}\frac{1}{b-\lambda+i\iota\epsilon}\\
+%             &+k^2\left\{\begin{aligned}
+%             &2\partial_y\left(\frac{(1-\chi)b''}{(b')^2}\right)\partial_y\psi
+% +\partial_y^2\left(\frac{(1-\chi)b''}{(b')^2}\right)\psi\notag\\
+% &\hspace{12mm}-\frac{1-\chi}{(b')^2}\omega_{0k}''
+% -2\partial_y\left(\frac{1-\chi}{(b')^2}\right)\omega_{0k}'\notag\\
+% &\hspace{12mm}+\left[\frac{k^2(1-\chi)}{(b')^2}
+% -\partial_y^2\left(\frac{1-\chi}{(b')^2}\right)\right]\omega_{0k}
+%             \end{aligned}\right\}\log(b-\lambda+i\iota\epsilon)\notag\\
+%             &+\chi\left\{\begin{aligned}
+%               &4b'b''\partial_y\partial_\lambda^3\psi+2\partial_y(b'b'')\partial_\lambda^3\psi+4b'''\partial_y\partial_\lambda^2\psi+(b^(4)+4k^2b'')\partial_\lambda^2\psi+\frac{8b''(b''\psi-\omega_{0k})}{(b-\lambda+i\iota\epsilon)^3}\notag\\
+%               &+\Biggl[
+% b''D_\lambda^2\psi+2b'''D_\lambda\psi+b^{(4)}\psi-\omega_{0k}''+\frac{8(b'')^2}{b'}\bigl(D_\lambda\psi-\partial_y\psi\bigr)+\frac{4(b'')^2}{(b')^2}(b''\psi-\omega_{0k})
+% \Biggr]\frac{1}{(b-\lambda+i\iota\epsilon)^2}\notag\\
+%             \end{aligned}
+%             \right\}\notag\\
+%             &+\chi'\left\{\begin{aligned}
+%               &2(b')^2\partial_y\partial_\lambda^3\psi+2b'b''\partial_\lambda^3\psi+4b''\partial_y\partial_\lambda^2\psi+(2b'''+4k^2b')\partial_\lambda^2\psi
+%               +\frac{4b'(b''\psi-\omega_{0k})}{(b-\lambda+i\iota\epsilon)^3}\\
+%               &+\Bigl[3b''D_\lambda\psi-2b''\partial_y\psi+b'''\psi-\omega_{0k}'+\frac{2\chi'b''}{b'}(b''\psi-\omega_{0k})\Bigr]\frac{2}{(b-\lambda+i\iota\epsilon)^2}
+%             \end{aligned}\right\}\notag\\
+%             &+\chi''\left\{
+%              b''\psi-\omega_{0k}+(b')^2\partial_\lambda^3\psi+2b'\partial_y\partial_\lambda^2\psi+b''\partial_\lambda^2\psi
+%             \right\}-(1-\chi)(b')^2\mathcal{R}_{3,0,\epsilon}^\iota+2(1-\chi)b'\mathcal{R}_{2,1,\epsilon}^\iota+(1-\chi)b''\mathcal{R}_{2,0,\epsilon}^\iota\notag\\
+%             &-2\partial_y\left[(1-\chi)(b')^2\right]\partial_yr_{3,0,\epsilon}^\iota-\partial_y^2\left[(1-\chi)(b')^2\right]r_{3,0,\epsilon}^\iota+4\partial_y\left[(1-\chi)b'\right]\partial_yr_{2,1,\epsilon}^\iota+2\partial_y^2\left[(1-\chi)b'\right]r_{2,1,\epsilon}^\iota\notag\\
+%             &+2\partial_y\left[(1-\chi)b''\right]\partial_yr_{2,0,\epsilon}^\iota+\partial_y^2\left[(1-\chi)b''\right]r_{2,0,\epsilon}^\iota
+%             &+2\partial_y\!\bigl(\chi(b')^2\bigr)\partial_y\partial_\lambda^3\psi
+% +\partial_y^2\!\bigl(\chi(b')^2\bigr)\partial_\lambda^3\psi\notag\\
+% &+\Bigl[2\partial_y^2(\chi b')+2\partial_y(\chi b'')\Bigr]
+% \partial_y\partial_\lambda^2\psi\notag\\
+% &+\Bigl[\partial_y^2(\chi b'')+4k^2\partial_y(\chi b')\Bigr]
+% \partial_\lambda^2\psi.
+    % \end{align}
+
+    \end{enumerate}
+    \endgroup
+
+
+
+In the degenerate case, we group by dimension counting. We use the shorthands
+\begin{align*}
+   f=\digamma^{\iota}_{k,\epsilon}(y,\lambda),\quad\ b=b(y),\quad\ \chi=\chi_{j,\delta}^{\ast}(y).
+\end{align*}
+
+\begingroup
+\footnotesize
+
+\setlength{\jot}{3pt}
+\begin{align}
+R^\ast_{1,0}=&\chi\log\!\left(\frac{b-\lambda+i\epsilon}{c}\right)\Bigl[\frac{4 (b'')^{2}}{(b')^{3}} \p_y f- \frac{6 (b'')^{3}}{(b' )^{4}} f\Bigr]+\frac{\chi}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{2 b'' }{b' } \p_y f\tag*{\text{order $-2$}}+\frac{3 (b'' )^{2}}{(b' )^{2}} f\Bigr]\notag\\
+&+\chi'\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{2 b'' }{(b' )^{2}} \p_y f+\frac{4 (b'' )^{2}}{(b' )^{3}} f\Bigr]+\frac{\chi'}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{2 b'' }{b' } f\Bigr]\notag\\
+&+\chi''\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{b'' }{(b' )^{2}} f\Bigr]\notag\\
+&+\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{2 b''' }{(b' )^{2}} \p_y f+\frac{6 b''  b''' }{(b' )^{3}} f\Bigr]+\frac{\chi}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{2 b''' }{b' } f\Bigr]\tag*{\text{order $-1$}}\\
+&+\chi'\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{2 b''' }{(b' )^{2}} f\Bigr]\notag\\
+&+\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{b'''' }{(b' )^{2}} f\Bigr]\tag*{\text{order $0$}}\\
+&+\p_\lambda r+\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[\frac{b'' }{(b' )^{2}} r\Bigr]\tag*{\text{$r$-terms}}\\
+&+(1-\chi)\Bigg[\frac{1}{\bigl(b -\lambda+i\epsilon\bigr)^{2}}\Bigl[- b''  f\Bigr]\Bigg]\tag*{\text{$1-\chi$ terms}}.
+\end{align}
+
+
+\setlength{\jot}{3pt}
+\begin{align}
+R^\ast_{2,0}={}&\frac{\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[\frac{4 (b'' )^{3}}{(b' )^{4}} f\Bigr]\tag*{\text{order $-4$}}\\
+&+\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[\frac{8 (b'' )^{2}}{(b' )^{4}} \p_y(\D f)- \frac{20 (b'' )^{3}}{(b' )^{5}} \D f- \frac{28 (b'' )^{3}}{(b' )^{5}} \p_y f+\frac{60 (b'' )^{4}}{(b' )^{6}} f+\frac{4 k^2 (b'' )^{2}}{(b' )^{4}} f\Bigr]\notag\\
+&+\frac{\chi}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{4 b'' }{(b' )^{2}} \p_y(\D f)+\frac{10 (b'' )^{2}}{(b' )^{3}} \D f+\frac{2 (b'' )^{2}}{(b' )^{3}} \p_y f- \frac{15 (b'' )^{3}}{(b' )^{4}} f\Bigr]\notag\\
+&+\chi'\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{4 b'' }{(b' )^{3}} \p_y(\D f)+\frac{12 (b'' )^{2}}{(b' )^{4}} \D f+\frac{6 (b'' )^{2}}{(b' )^{4}} \p_y f- \frac{24 (b'' )^{3}}{(b' )^{5}} f\Bigr]\notag\\
+&+\frac{\chi'}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{4 b'' }{(b' )^{2}} \D f+\frac{2 b'' }{(b' )^{2}} \p_y f+\frac{2 (b'' )^{2}}{(b' )^{3}} f\Bigr]\notag\\
+&+\chi''\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{2 b'' }{(b' )^{3}} \D f+\frac{3 (b'' )^{2}}{(b' )^{4}} f\Bigr]+\frac{\chi''}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[\frac{b'' }{(b' )^{2}} f\Bigr]\notag\\
+&+\frac{\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{2 b''  b''' }{(b' )^{3}} f\Bigr]\tag*{\text{order $-3$}}\\
+&+\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{4 b''' }{(b' )^{3}} \p_y(\D f)+\frac{16 b''  b''' }{(b' )^{4}} \D f+\frac{26 b''  b''' }{(b' )^{4}} \p_y f- \frac{84 b'''  (b'' )^{2}}{(b' )^{5}} f\Bigr]\notag\\
+&+\frac{\chi}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{4 b''' }{(b' )^{2}} \D f- \frac{2 b''' }{(b' )^{2}} \p_y f+\frac{16 b''  b''' }{(b' )^{3}} f\Bigr]\notag\\
+&+\chi'\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{4 b''' }{(b' )^{3}} \D f- \frac{4 b''' }{(b' )^{3}} \p_y f+\frac{24 b''  b''' }{(b' )^{4}} f\Bigr]\notag\\
+&+\frac{\chi'}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{2 b''' }{(b' )^{2}} f\Bigr]+\chi''\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{2 b''' }{(b' )^{3}} f\Bigr]\notag\\
+&+\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{2 b'''' }{(b' )^{3}} \D f- \frac{4 b'''' }{(b' )^{3}} \p_y f+\frac{12 (b''' )^{2}}{(b' )^{4}} f+\frac{18 b''  b'''' }{(b' )^{4}} f\Bigr]\tag*{\text{order $-2$}}\\
+&+\frac{\chi}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{3 b'''' }{(b' )^{2}} f\Bigr]+\chi'\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{4 b'''' }{(b' )^{3}} f\Bigr]\notag\\
+&+\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{2 b^{(5)} }{(b' )^{3}} f\Bigr]\tag*{\text{order $-1$}}\\
+&+\p_\lambda^2 r+\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[\frac{2 b'' }{(b' )^{3}} \D r- \frac{7 (b'' )^{2}}{(b' )^{4}} r+\frac{2 b''' }{(b' )^{3}} r\Bigr]\tag*{\text{$r$-terms}}\\
+&+\frac{\chi}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{b'' }{(b' )^{2}} r\Bigr]\notag\\
+&+(1-\chi)\Bigg[\frac{1}{\bigl(b -\lambda+i\epsilon\bigr)^{3}}\Bigl[- 2 b''  f\Bigr]+\frac{1}{\bigl(b -\lambda+i\epsilon\bigr)^{2}}\Bigl[- 2 b''  \p_\lambda f\Bigr]\Bigg]\tag*{\text{$1-\chi$ terms}}\\
+&+\chi'\Bigg[\frac{1}{\bigl(b -\lambda+i\epsilon\bigr)^{2}}\Bigl[- \frac{2 b'' }{b' } f\Bigr]\Bigg]\tag*{\text{$\chi'$ terms}}.
+\end{align}
+
+
+\setlength{\jot}{3pt}
+\begin{align}
+R^\ast_{1,1}={}&-2b'' \p_y\left(\p_\lambda^2 f-\chi\frac{b''  f}{(b' )^{2}\bigl(b -\lambda+i\epsilon\bigr)}\right)\tag*{\text{cancellations}}\\
+&+\frac{\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[\frac{2 (b'' )^{3}}{(b' )^{3}} f\Bigr]\tag*{\text{order $-3$}}\\
+&+\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[\frac{2 (b'' )^{2}}{(b' )^{3}} \p_y(\D f)- \frac{4 (b'' )^{3}}{(b' )^{4}} \D f- \frac{14 (b'' )^{3}}{(b' )^{4}} \p_y f+\frac{24 (b'' )^{4}}{(b' )^{5}} f+\frac{2 k^2 (b'' )^{2}}{(b' )^{3}} f\Bigr]\notag\\
+&+\frac{\chi}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{2 b'' }{b' } \p_y(\D f)+\frac{3 (b'' )^{2}}{(b' )^{2}} \D f+\frac{2 (b'' )^{2}}{(b' )^{2}} \p_y f- \frac{6 (b'' )^{3}}{(b' )^{3}} f\Bigr]\notag\\
+&+\chi'\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{2 b'' }{(b' )^{2}} \p_y(\D f)+\frac{4 (b'' )^{2}}{(b' )^{3}} \D f+\frac{4 (b'' )^{2}}{(b' )^{3}} \p_y f - \frac{12 (b'' )^{3}}{(b' )^{4}} f\Bigr]\notag\\
+&+\frac{\chi'}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{2 b'' }{b' } \D f+\frac{2 (b'' )^{2}}{(b' )^{2}} f\Bigr]\notag\\
+&+\chi''\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{b'' }{(b' )^{2}} \D f+\frac{2 (b'' )^{2}}{(b' )^{3}} f\Bigr]\notag\\
+&+\frac{\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{b''  b''' }{(b' )^{2}} f\Bigr]\tag*{\text{order $-2$}}\\
+&+\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{2 b''' }{(b' )^{2}} \p_y(\D f)+\frac{5 b''  b''' }{(b' )^{3}} \D f+\frac{13 b''  b''' }{(b' )^{3}} \p_y f- \frac{36 b'''  (b'' )^{2}}{(b' )^{4}} f\Bigr]\notag\\
+&+\frac{\chi}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{3 b''' }{b' } \D f- \frac{b''' }{b' } \p_y f+\frac{9 b''  b''' }{(b' )^{2}} f\Bigr]+\chi\Bigl[- b'''  \p_\lambda^2 f\Bigr]\notag\\
+&+\frac{(1-\chi)}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- b'''  \p_\lambda f\Bigr]+(1-\chi)\Bigl[- b'''  \p_\lambda^2 f\Bigr]\notag\\
+&+\chi'\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{2 b''' }{(b' )^{2}} \D f- \frac{2 b''' }{(b' )^{2}} \p_y f+\frac{12 b''  b''' }{(b' )^{3}} f\Bigr]\notag\\
+&+\frac{\chi'}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{2 b''' }{b' } f\Bigr]\notag\\
+&+\chi''\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{b''' }{(b' )^{2}} f\Bigr]\notag\\
+&+\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{b'''' }{(b' )^{2}} \D f- \frac{2 b'''' }{(b' )^{2}} \p_y f+\frac{6 (b''' )^{2}}{(b' )^{3}} f+\frac{8 b''  b'''' }{(b' )^{3}} f\Bigr]\tag*{\text{order $-1$}}\\
+&+\frac{\chi}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{2 b'''' }{b' } f\Bigr]+\chi'\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{2 b'''' }{(b' )^{2}} f\Bigr]\notag\\
+&+\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{b^{(5)} }{(b' )^{2}} f\Bigr]\tag*{\text{order $0$}}\\
+&+\D\p_\lambda r+\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[\frac{b'' }{(b' )^{2}} \D r- \frac{4 (b'' )^{2}}{(b' )^{3}} r+\frac{b''' }{(b' )^{2}} r\Bigr]\tag*{\text{$r$-terms}}\\
+&+(1-\chi)\Bigg[\frac{1}{\bigl(b -\lambda+i\epsilon\bigr)^{2}}\Bigl[- b''  \D f- b'''  f\Bigr]\Bigg]\tag*{\text{$1-\chi$ terms}}.
+\end{align}
+
+
+\setlength{\jot}{3pt}
+\begin{align}
+R^\ast_{3,0}={}&\frac{\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[\frac{12 (b'' )^{3}}{(b' )^{5}} \D f\Bigr]\tag*{\text{order $-6$}}\\
+&+\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[\frac{12 (b'' )^{2}}{(b' )^{5}} \p_y(\D^2 f)- \frac{48 (b'' )^{3}}{(b' )^{6}} \D^2 f- \frac{132 (b'' )^{3}}{(b' )^{6}} \p_y(\D f)+\frac{360 (b'' )^{4}}{(b' )^{7}} \D f\notag\\
+&\qquad +\frac{12 k^2 (b'' )^{2}}{(b' )^{5}} \D f+\frac{6 (b'' )^{3}}{(b' )^{4}} \p_\lambda^2 f+\frac{48 (b'' )^{3}}{(b' )^{5}} \p_y\p_\lambda f+\frac{180 (b'' )^{4}}{(b' )^{7}} \p_y f+\frac{8 k^2 (b'' )^{2}}{(b' )^{5}} \p_y f\notag\\
+&\qquad - \frac{630 (b'' )^{5}}{(b' )^{8}} f- \frac{20 k^2 (b'' )^{3}}{(b' )^{6}} f\Bigr]\notag\\
+&+\frac{\chi}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{6 b'' }{(b' )^{3}} \p_y(\D^2 f)+\frac{21 (b'' )^{2}}{(b' )^{4}} \D^2 f +\frac{12 (b'' )^{2}}{(b' )^{4}} \p_y(\D f)- \frac{78 (b'' )^{3}}{(b' )^{5}} \D f\notag\\
+&\qquad- \frac{12 (b'' )^{3}}{(b' )^{5}} \p_y f- \frac{2 b''  k^2}{(b' )^{3}} \p_y f+\frac{105 (b'' )^{4}}{(b' )^{6}} f+\frac{7 k^2 (b'' )^{2}}{(b' )^{4}} f\Bigr]\notag\\
+&+\chi'\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{6 b'' }{(b' )^{4}} \p_y(\D^2 f)+\frac{24 (b'' )^{2}}{(b' )^{5}} \D^2 f+\frac{24 (b'' )^{2}}{(b' )^{5}} \p_y(\D f)\notag\\
+&\qquad - \frac{120 (b'' )^{3}}{(b' )^{6}} \D f- \frac{30 (b'' )^{3}}{(b' )^{6}} \p_y f- \frac{2 b''  k^2}{(b' )^{4}} \p_y f+\frac{180 (b'' )^{4}}{(b' )^{7}} f+\frac{8 k^2 (b'' )^{2}}{(b' )^{5}} f\Bigr]\notag\\
+&+\frac{\chi'}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{6 b'' }{(b' )^{3}} \D^2 f+\frac{6 b'' }{(b' )^{3}} \p_y(\D f)+\frac{6 (b'' )^{2}}{(b' )^{4}} \D f- \frac{6 (b'' )^{3}}{(b' )^{5}} f- \frac{4 b''  k^2}{(b' )^{3}} f\Bigr]\notag\\
+&+\chi''\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{3 b'' }{(b' )^{4}} \D^2 f+\frac{12 (b'' )^{2}}{(b' )^{5}} \D f- \frac{15 (b'' )^{3}}{(b' )^{6}} f- \frac{b''  k^2}{(b' )^{4}} f\Bigr]\notag\\
+&+\frac{\chi''}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[\frac{3 b'' }{(b' )^{3}} \D f- \frac{b'' }{(b' )^{3}} \p_y f- \frac{3 (b'' )^{2}}{(b' )^{4}} f\Bigr]\notag\\
+&+\frac{\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{6 b''  b''' }{(b' )^{4}} \D f+\frac{24 b'''  (b'' )^{2}}{(b' )^{5}} f\Bigr]\tag*{\text{order $-5$}}\notag\\
+&+\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{6 b''' }{(b' )^{4}} \p_y(\D^2 f)+\frac{30 b''  b''' }{(b' )^{5}} \D^2 f+\frac{102 b''  b''' }{(b' )^{5}} \p_y(\D f)\notag\\
+&\qquad - \frac{420 b'''  (b'' )^{2}}{(b' )^{6}} \D f- \frac{18 b''  b''' }{(b' )^{4}} \p_y\p_\lambda f+\frac{24 b'''  (b'' )^{2}}{(b' )^{5}} \p_\lambda f- \frac{250 b'''  (b'' )^{2}}{(b' )^{6}} \p_y f\notag\\
+&\qquad - \frac{2 b'''  k^2}{(b' )^{4}} \p_y f+\frac{1110 b'''  (b'' )^{3}}{(b' )^{7}} f+\frac{12 b''  b'''  k^2}{(b' )^{5}} f\Bigr]+\frac{\chi}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{6 b''' }{(b' )^{3}} \D^2 f\notag\\
+&\qquad - \frac{6 b''' }{(b' )^{3}} \p_y(\D f)+\frac{66 b''  b''' }{(b' )^{4}} \D f+\frac{14 b''  b''' }{(b' )^{4}} \p_y f- \frac{150 b'''  (b'' )^{2}}{(b' )^{5}} f- \frac{4 b'''  k^2}{(b' )^{3}} f\Bigr]\notag\\
+&+\chi'\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{6 b''' }{(b' )^{4}} \D^2 f- \frac{12 b''' }{(b' )^{4}} \p_y(\D f)+\frac{96 b''  b''' }{(b' )^{5}} \D f+\frac{32 b''  b''' }{(b' )^{5}} \p_y f\notag\\
+&\qquad - \frac{250 b'''  (b'' )^{2}}{(b' )^{6}} f- \frac{2 b'''  k^2}{(b' )^{4}} f\Bigr]\notag\\
+&+\frac{\chi'}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{6 b''' }{(b' )^{3}} \D f+\frac{2 b''' }{(b' )^{3}} \p_y f+\frac{8 b''  b''' }{(b' )^{4}} f\Bigr]\notag\\
+&+\chi''\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{6 b''' }{(b' )^{4}} \D f+\frac{16 b''  b''' }{(b' )^{5}} f\Bigr]+\frac{\chi''}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[\frac{2 b''' }{(b' )^{3}} f\Bigr]\notag\\
+&+\frac{\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{6 (b''' )^{2}}{(b' )^{4}} f- \frac{3 b''  b'''' }{(b' )^{4}} f\Bigr]\tag*{\text{order $-4$}}\\
+&+\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{3 b'''' }{(b' )^{4}} \D^2 f- \frac{12 b'''' }{(b' )^{4}} \p_y(\D f)+\frac{48 (b''' )^{2}}{(b' )^{5}} \D f+\frac{72 b''  b'''' }{(b' )^{5}} \D f\notag\\
+&\qquad - \frac{6 (b''' )^{2}}{(b' )^{4}} \p_\lambda f- \frac{3 b''  b'''' }{(b' )^{4}} \p_\lambda f+\frac{32 (b''' )^{2}}{(b' )^{5}} \p_y f+\frac{56 b''  b'''' }{(b' )^{5}} \p_y f- \frac{330 b''  (b''' )^{2}}{(b' )^{6}} f\notag\\
+&\qquad - \frac{265 b''''  (b'' )^{2}}{(b' )^{6}} f- \frac{b''''  k^2}{(b' )^{4}} f\Bigr]\notag\\
+&+\frac{\chi}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{9 b'''' }{(b' )^{3}} \D f- \frac{3 b'''' }{(b' )^{3}} \p_y f+\frac{20 (b''' )^{2}}{(b' )^{4}} f+\frac{35 b''  b'''' }{(b' )^{4}} f\Bigr]\notag\\
+&+\chi'\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{12 b'''' }{(b' )^{4}} \D f- \frac{6 b'''' }{(b' )^{4}} \p_y f+\frac{32 (b''' )^{2}}{(b' )^{5}} f+\frac{56 b''  b'''' }{(b' )^{5}} f\Bigr]\notag\\
+&+\frac{\chi'}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{2 b'''' }{(b' )^{3}} f\Bigr]+\chi''\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{3 b'''' }{(b' )^{4}} f\Bigr]\notag\\
+&+\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{6 b^{(5)} }{(b' )^{4}} \D f- \frac{6 b^{(5)} }{(b' )^{4}} \p_y f+\frac{40 b''  b^{(5)} }{(b' )^{5}} f+\frac{60 b'''  b'''' }{(b' )^{5}} f\Bigr]\tag*{\text{order $-3$}}\\
+&+\frac{\chi}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{4 b^{(5)} }{(b' )^{3}} f\Bigr]+\chi'\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{6 b^{(5)} }{(b' )^{4}} f\Bigr]\notag\\
+&+\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{3 b^{(6)} }{(b' )^{4}} f\Bigr]\tag*{\text{order $-2$}}\\
+&+\p_\lambda^3 r\tag*{\text{$r$-terms}}\\
+&+\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[\frac{3 b'' }{(b' )^{4}} \D^2 r- \frac{24 (b'' )^{2}}{(b' )^{5}} \D r+\frac{6 b''' }{(b' )^{4}} \D r+\frac{15 (b'' )^{3}}{(b' )^{6}} r\notag\\
+&\qquad +\frac{3 b'''' }{(b' )^{4}} r- \frac{16 b''  b''' }{(b' )^{5}} r+\frac{b''  k^2}{(b' )^{4}} r\Bigr]\notag\\
+&+\frac{\chi}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{3 b'' }{(b' )^{3}} \D r+\frac{b'' }{(b' )^{3}} \p_y r+\frac{3 (b'' )^{2}}{(b' )^{4}} r\Bigr]\notag\\
+&+\frac{\chi'}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[\frac{2 b'' }{(b' )^{3}} r\Bigr]\notag\\
+&+(1-\chi)\Bigg[\frac{1}{\bigl(b -\lambda+i\epsilon\bigr)^{4}}\Bigl[- 6 b''  f\Bigr]+\frac{1}{\bigl(b -\lambda+i\epsilon\bigr)^{3}}\Bigl[- 6 b''  \p_\lambda f\Bigr]+\frac{1}{\bigl(b -\lambda+i\epsilon\bigr)^{2}}\Bigl[- 3 b''  \p_\lambda^2 f\Bigr]\Bigg]\tag*{\text{$1-\chi$ terms}}\\
+&+\chi'\Bigg[\frac{1}{\bigl(b -\lambda+i\epsilon\bigr)^{3}}\Bigl[- \frac{4 b'' }{b' } f\Bigr]+\frac{1}{\bigl(b -\lambda+i\epsilon\bigr)^{2}}\Bigl[- \frac{6 b'' }{(b' )^{2}} \D f+\frac{4 b'' }{(b' )^{2}} \p_y f- \frac{2 b''' }{(b' )^{2}} f\Bigr]\Bigg]\tag*{\text{$\chi'$ terms}}\\
+&+\chi''\Bigg[\frac{1}{\bigl(b -\lambda+i\epsilon\bigr)^{2}}\Bigl[\frac{b'' }{(b' )^{2}} f\Bigr]\Bigg]\tag*{\text{$\chi''$ terms}}.
+\end{align}
+
+
+\setlength{\jot}{3pt}
+\begin{align}
+R^\ast_{2,1}={}&-2b'' \p_y\bigl(\p_\lambda^3f-\chi S_{3,0}\bigr)-b''' \bigl(\p_\lambda^3f-\chi S_{3,0}\bigr)-\frac{b''' }{\bigl(b -\lambda+i\epsilon\bigr)}\bigl(\p_\lambda^2f-\chi S_{2,0}\bigr)\tag*{\text{cancellations}}\\
+&-\frac{8\chi (b'' )^{3}}{(b' )^{3}}\p_\lambda^2f\,\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\notag\\
+&+\frac{\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[\frac{8 (b'' )^{3}}{(b' )^{4}} \D f- \frac{22 (b'' )^{4}}{(b' )^{5}} f\Bigr]\tag*{\text{order $-5$}}\\
+&+\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[\frac{10 (b'' )^{2}}{(b' )^{4}} \p_y(\D^2 f)- \frac{28 (b'' )^{3}}{(b' )^{5}} \D^2 f- \frac{94 (b'' )^{3}}{(b' )^{5}} \p_y(\D f)+\frac{250 (b'' )^{4}}{(b' )^{6}} \D f\notag\\
+&\qquad +\frac{8 k^2 (b'' )^{2}}{(b' )^{4}} \D f+\frac{28 (b'' )^{4}}{(b' )^{5}} \p_\lambda f+\frac{200 (b'' )^{4}}{(b' )^{6}} \p_y f+\frac{2 k^2 (b'' )^{2}}{(b' )^{4}} \p_y f- \frac{540 (b'' )^{5}}{(b' )^{7}} f\notag\\
+&\qquad - \frac{30 k^2 (b'' )^{3}}{(b' )^{5}} f\Bigr]\notag\\
+&+\frac{\chi}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{4 b'' }{(b' )^{2}} \p_y(\D^2 f)+\frac{16 (b'' )^{2}}{(b' )^{3}} \D^2 f+\frac{10 (b'' )^{2}}{(b' )^{3}} \p_y(\D f)\notag\\
+&\qquad - \frac{63 (b'' )^{3}}{(b' )^{4}} \D f- \frac{2 (b'' )^{3}}{(b' )^{3}} \p_\lambda f- \frac{12 (b'' )^{3}}{(b' )^{4}} \p_y f+\frac{90 (b'' )^{4}}{(b' )^{5}} f+\frac{2 k^2 (b'' )^{2}}{(b' )^{3}} f\Bigr]\notag\\
+&+\chi'\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{4 b'' }{(b' )^{3}} \p_y(\D^2 f)+\frac{18 (b'' )^{2}}{(b' )^{4}} \D^2 f+\frac{18 (b'' )^{2}}{(b' )^{4}} \p_y(\D f)- \frac{96 (b'' )^{3}}{(b' )^{5}} \D f\notag\\
+&\qquad - \frac{24 (b'' )^{3}}{(b' )^{5}} \p_y f+\frac{150 (b'' )^{4}}{(b' )^{6}} f+\frac{2 k^2 (b'' )^{2}}{(b' )^{4}} f\Bigr]\notag\\
+&+\frac{\chi'}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{4 b'' }{(b' )^{2}} \D^2 f+\frac{2 b'' }{(b' )^{2}} \p_y(\D f)+\frac{8 (b'' )^{2}}{(b' )^{3}} \D f- \frac{2 (b'' )^{2}}{(b' )^{3}} \p_y f- \frac{6 (b'' )^{3}}{(b' )^{4}} f\Bigr]\notag\\
+&+\chi''\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{2 b'' }{(b' )^{3}} \D^2 f+\frac{9 (b'' )^{2}}{(b' )^{4}} \D f- \frac{12 (b'' )^{3}}{(b' )^{5}} f\Bigr]\notag\\
+&+\frac{\chi''}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[\frac{b'' }{(b' )^{2}} \D f- \frac{2 (b'' )^{2}}{(b' )^{3}} f\Bigr]\notag\\
+&+\frac{\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{2 b''  b''' }{(b' )^{3}} \D f+\frac{26 b'''  (b'' )^{2}}{(b' )^{4}} f\Bigr]\tag*{\text{order $-4$}}\\
+&+\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{4 b''' }{(b' )^{3}} \p_y(\D^2 f)+\frac{23 b''  b''' }{(b' )^{4}} \D^2 f+\frac{64 b''  b''' }{(b' )^{4}} \p_y(\D f)\notag\\
+&\qquad - \frac{285 b'''  (b'' )^{2}}{(b' )^{5}} \D f- \frac{22 b'''  (b'' )^{2}}{(b' )^{4}} \p_\lambda f- \frac{251 b'''  (b'' )^{2}}{(b' )^{5}} \p_y f+\frac{925 b'''  (b'' )^{3}}{(b' )^{6}} f+\frac{15 b''  b'''  k^2}{(b' )^{4}} f\Bigr]\notag\\
+&+\frac{\chi}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{4 b''' }{(b' )^{2}} \D^2 f- \frac{6 b''' }{(b' )^{2}} \p_y(\D f)+\frac{52 b''  b''' }{(b' )^{3}} \D f\notag\\
+&\qquad +\frac{2 b''  b''' }{(b' )^{2}} \p_\lambda f+\frac{12 b''  b''' }{(b' )^{3}} \p_y f- \frac{125 b'''  (b'' )^{2}}{(b' )^{4}} f\Bigr]\notag\\
+&+\chi'\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{4 b''' }{(b' )^{3}} \D^2 f- \frac{8 b''' }{(b' )^{3}} \p_y(\D f)+\frac{72 b''  b''' }{(b' )^{4}} \D f+\frac{24 b''  b''' }{(b' )^{4}} \p_y f - \frac{200 b'''  (b'' )^{2}}{(b' )^{5}} f\Bigr]\notag\\
+&+\frac{\chi'}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{6 b''' }{(b' )^{2}} \D f+\frac{2 b''' }{(b' )^{2}} \p_y f+\frac{8 b''  b''' }{(b' )^{3}} f\Bigr]\notag\\
+&+\chi''\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{4 b''' }{(b' )^{3}} \D f+\frac{12 b''  b''' }{(b' )^{4}} f\Bigr]+\frac{\chi''}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[\frac{b''' }{(b' )^{2}} f\Bigr]\notag\\
+&+\frac{\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{2 (b''' )^{2}}{(b' )^{3}} f- \frac{2 b''  b'''' }{(b' )^{3}} f\Bigr]\tag*{\text{order $-3$}}\\
+&+\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{2 b'''' }{(b' )^{3}} \D^2 f- \frac{8 b'''' }{(b' )^{3}} \p_y(\D f)+\frac{32 (b''' )^{2}}{(b' )^{4}} \D f+\frac{48 b''  b'''' }{(b' )^{4}} \D f\notag\\
+&\qquad +\frac{4 b''  b'''' }{(b' )^{3}} \p_\lambda f+\frac{28 (b''' )^{2}}{(b' )^{4}} \p_y f+\frac{48 b''  b'''' }{(b' )^{4}} \p_y f- \frac{264 b''  (b''' )^{2}}{(b' )^{5}} f- \frac{212 b''''  (b'' )^{2}}{(b' )^{5}} f\Bigr]\notag\\
+&+\frac{\chi}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{7 b'''' }{(b' )^{2}} \D f- \frac{2 b'''' }{(b' )^{2}} \p_y f+\frac{16 (b''' )^{2}}{(b' )^{3}} f+\frac{28 b''  b'''' }{(b' )^{3}} f\Bigr]\notag\\
+&+\chi'\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{8 b'''' }{(b' )^{3}} \D f- \frac{4 b'''' }{(b' )^{3}} \p_y f+\frac{24 (b''' )^{2}}{(b' )^{4}} f+\frac{42 b''  b'''' }{(b' )^{4}} f\Bigr]\notag\\
+&+\frac{\chi'}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{2 b'''' }{(b' )^{2}} f\Bigr]+\chi''\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{2 b'''' }{(b' )^{3}} f\Bigr]\notag\\
+&+\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{4 b^{(5)} }{(b' )^{3}} \D f- \frac{4 b^{(5)} }{(b' )^{3}} \p_y f+\frac{30 b''  b^{(5)} }{(b' )^{4}} f+\frac{45 b'''  b'''' }{(b' )^{4}} f\Bigr]\tag*{\text{order $-2$}}\\
+&+\frac{\chi}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{3 b^{(5)} }{(b' )^{2}} f\Bigr]+\chi'\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{4 b^{(5)} }{(b' )^{3}} f\Bigr]\notag\\
+&+\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{2 b^{(6)} }{(b' )^{3}} f\Bigr]\tag*{\text{order $-1$}}\\
+&+\D\p_\lambda^2 r\tag*{\text{$r$-terms}}\\
+&+\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[\frac{2 b'' }{(b' )^{3}} \D^2 r- \frac{17 (b'' )^{2}}{(b' )^{4}} \D r+\frac{4 b''' }{(b' )^{3}} \D r+\frac{34 (b'' )^{3}}{(b' )^{5}} r+\frac{2 b'''' }{(b' )^{3}} r- \frac{24 b''  b''' }{(b' )^{4}} r\Bigr]\notag\\
+&+\frac{\chi}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{b'' }{(b' )^{2}} \D r+\frac{2 (b'' )^{2}}{(b' )^{3}} r- \frac{b''' }{(b' )^{2}} r\Bigr]\notag\\
+&+(1-\chi)\Bigg[\frac{1}{\bigl(b -\lambda+i\epsilon\bigr)^{3}}\Bigl[- 2 b''  \D f- 2 b'''  f\Bigr]+\frac{1}{\bigl(b -\lambda+i\epsilon\bigr)^{2}}\Bigl[- 2 b''  \p_\lambda\D f- 2 b'''  \p_\lambda f\Bigr]\Bigg]\tag*{\text{$1-\chi$ terms}}\\
+&+\chi'\Bigg[\frac{1}{\bigl(b -\lambda+i\epsilon\bigr)^{2}}\Bigl[- \frac{2 b'' }{b' } \D f+\frac{2 (b'' )^{2}}{(b' )^{2}} f- \frac{2 b''' }{b' } f\Bigr]\Bigg]\tag*{\text{$\chi'$ terms}}.
+\end{align}
+
+\setlength{\jot}{3pt}
+\begin{align}
+R^\ast_{1,2}={}&-4b'' \p_y\bigl(\p_\lambda^2\D f-\chi S_{2,1}\bigr)+2(b'' )^{2}\bigl(\p_\lambda^3f-\chi S_{3,0}\bigr)-2b''' \p_y\bigl(\p_\lambda^2f-\chi S_{2,0}\bigr)\tag*{\text{cancellations}}\\
+&+\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[\frac{12 (b'' )^{2}}{(b' )^{3}} \p_y(\D^2 f)- \frac{36 (b'' )^{3}}{(b' )^{4}} \D^2 f- \frac{60 (b'' )^{3}}{(b' )^{4}} \p_y(\D f)+\frac{216 (b'' )^{4}}{(b' )^{5}} \D f\tag*{\text{order $-4$}}\\
+&\qquad - \frac{4 (b'' )^{2}}{(b' )^{2}} \p_y\p_\lambda(\D f)+\frac{2 (b'' )^{3}}{(b' )^{2}} \p_\lambda^2 f+\frac{8 (b'' )^{3}}{(b' )^{3}} \p_y\p_\lambda f+\frac{96 (b'' )^{4}}{(b' )^{5}} \p_y f- \frac{390 (b'' )^{5}}{(b' )^{6}} f \notag\\
+&\qquad - \frac{2 k^2 (b'' )^{3}}{(b' )^{4}} f\Bigr]\notag\\
+&+\frac{\chi}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{2 b'' }{b' } \p_y(\D^2 f)+\frac{11 (b'' )^{2}}{(b' )^{2}} \D^2 f+\frac{4 (b'' )^{2}}{(b' )^{2}} \p_y(\D f)\notag\\
+&\qquad - \frac{42 (b'' )^{3}}{(b' )^{3}} \D f- \frac{6 (b'' )^{3}}{(b' )^{3}} \p_y f+\frac{60 (b'' )^{4}}{(b' )^{4}} f\Bigr]\notag\\
+&+\chi'\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{2 b'' }{(b' )^{2}} \p_y(\D^2 f) +\frac{12 (b'' )^{2}}{(b' )^{3}} \D^2 f+\frac{8 (b'' )^{2}}{(b' )^{3}} \p_y(\D f)\notag\\
+&\qquad - \frac{60 (b'' )^{3}}{(b' )^{4}} \D f- \frac{12 (b'' )^{3}}{(b' )^{4}} \p_y f+\frac{96 (b'' )^{4}}{(b' )^{5}} f\Bigr]\notag\\
+&+\frac{\chi'}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{2 b'' }{b' } \D^2 f+\frac{4 (b'' )^{2}}{(b' )^{2}} \D f- \frac{4 (b'' )^{3}}{(b' )^{3}} f\Bigr]\notag\\
+&+\chi''\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{b'' }{(b' )^{2}} \D^2 f+\frac{4 (b'' )^{2}}{(b' )^{3}} \D f- \frac{6 (b'' )^{3}}{(b' )^{4}} f\Bigr]\notag\\
+&+\frac{\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{2 b''  b''' }{(b' )^{2}} \D f+\frac{4 b'''  (b'' )^{2}}{(b' )^{3}} f\Bigr]\tag*{\text{order $-3$}}\\
+&+\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{2 b''' }{(b' )^{2}} \p_y(\D^2 f)+\frac{14 b''  b''' }{(b' )^{3}} \D^2 f+\frac{44 b''  b''' }{(b' )^{3}} \p_y(\D f)\notag\\
+&\qquad - \frac{216 b'''  (b'' )^{2}}{(b' )^{4}} \D f- \frac{2 b''  b''' }{(b' )^{2}} \p_\lambda\D f- \frac{6 b''  b''' }{(b' )^{2}} \p_y\p_\lambda f+\frac{4 b'''  (b'' )^{2}}{(b' )^{3}} \p_\lambda f\notag\\
+&\qquad - \frac{126 b'''  (b'' )^{2}}{(b' )^{4}} \p_y f+\frac{632 b'''  (b'' )^{3}}{(b' )^{5}} f\Bigr]\notag\\
+&+\frac{\chi}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{2 b''' }{b' } \D^2 f- \frac{4 b''' }{b' } \p_y(\D f)+\frac{38 b''  b''' }{(b' )^{2}} \D f - 2 b'''  \p_\lambda\D f+\frac{6 b''  b''' }{(b' )^{2}} \p_y f\notag\\
+&\qquad - \frac{88 b'''  (b'' )^{2}}{(b' )^{3}} f\Bigr]+\chi\Bigl[- 2 b'''  \p_\lambda^2\D f\Bigr]\notag\\
+&+\frac{(1-\chi)}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- 2 b'''  \p_\lambda\D f\Bigr]+(1-\chi)\Bigl[- 2 b'''  \p_\lambda^2\D f\Bigr]+\chi'\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{2 b''' }{(b' )^{2}} \D^2 f\notag\\
+&\qquad - \frac{4 b''' }{(b' )^{2}} \p_y(\D f)+\frac{44 b''  b''' }{(b' )^{3}} \D f+\frac{12 b''  b''' }{(b' )^{3}} \p_y f- \frac{126 b'''  (b'' )^{2}}{(b' )^{4}} f\Bigr]\notag\\
+&+\frac{\chi'}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{4 b''' }{b' } \D f+\frac{6 b''  b''' }{(b' )^{2}} f\Bigr]+\chi''\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{2 b''' }{(b' )^{2}} \D f+\frac{6 b''  b''' }{(b' )^{3}} f\Bigr]\notag\\
+&+\frac{\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{2 (b''' )^{2}}{(b' )^{2}} f- \frac{b''  b'''' }{(b' )^{2}} f\Bigr]\tag*{\text{order $-2$}}\\
+&+\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{b'''' }{(b' )^{2}} \D^2 f- \frac{4 b'''' }{(b' )^{2}} \p_y(\D f)+\frac{16 (b''' )^{2}}{(b' )^{3}} \D f+\frac{32 b''  b'''' }{(b' )^{3}} \D f\notag\\
+&\qquad - \frac{2 (b''' )^{2}}{(b' )^{2}} \p_\lambda f- \frac{b''  b'''' }{(b' )^{2}} \p_\lambda f+\frac{16 (b''' )^{2}}{(b' )^{3}} \p_y f+\frac{24 b''  b'''' }{(b' )^{3}} \p_y f- \frac{162 b''  (b''' )^{2}}{(b' )^{4}} f\notag\\
+&\qquad - \frac{138 b''''  (b'' )^{2}}{(b' )^{4}} f\Bigr]+\frac{\chi}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{4 b'''' }{b' } \D f- b''''  \p_\lambda f- \frac{2 b'''' }{b' } \p_y f+\frac{14 (b''' )^{2}}{(b' )^{2}} f\notag\\
+&\qquad +\frac{19 b''  b'''' }{(b' )^{2}} f\Bigr]+\chi\Bigl[- b''''  \p_\lambda^2 f\Bigr]+\frac{(1-\chi)}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- b''''  \p_\lambda f\Bigr]+(1-\chi)\Bigl[- b''''  \p_\lambda^2 f\Bigr]\notag\\
+&+\chi'\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{4 b'''' }{(b' )^{2}} \D f- \frac{2 b'''' }{(b' )^{2}} \p_y f+\frac{16 (b''' )^{2}}{(b' )^{3}} f+\frac{24 b''  b'''' }{(b' )^{3}} f\Bigr]\notag\\
+&+\frac{\chi'}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{2 b'''' }{b' } f\Bigr]+\chi''\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{b'''' }{(b' )^{2}} f\Bigr]\notag\\
+&+\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{2 b^{(5)} }{(b' )^{2}} \D f- \frac{2 b^{(5)} }{(b' )^{2}} \p_y f+\frac{18 b''  b^{(5)} }{(b' )^{3}} f+\frac{24 b'''  b'''' }{(b' )^{3}} f\Bigr]\tag*{\text{order $-1$}}\\
+&+\frac{\chi}{\bigl(b -\lambda+i\epsilon\bigr)}\Bigl[- \frac{2 b^{(5)} }{b' } f\Bigr]+\chi'\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{2 b^{(5)} }{(b' )^{2}} f\Bigr]\notag\\
+&+\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[- \frac{b^{(6)} }{(b' )^{2}} f\Bigr]\tag*{\text{order $0$}}\\
+&+\D^2\p_\lambda r+\chi\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\Bigl[\frac{b'' }{(b' )^{2}} \D^2 r- \frac{4 (b'' )^{2}}{(b' )^{3}} \D r+\frac{2 b''' }{(b' )^{2}} \D r+\frac{6 (b'' )^{3}}{(b' )^{4}} r\tag*{\text{$r$-terms}}\\
+&\qquad +\frac{b'''' }{(b' )^{2}} r- \frac{6 b''  b''' }{(b' )^{3}} r\Bigr]\notag\\
+&+(1-\chi)\Bigg[\frac{1}{\bigl(b -\lambda+i\epsilon\bigr)^{2}}\Bigl[- b''  \D^2 f- 2 b'''  \D f- b''''  f\Bigr]\Bigg]\tag*{\text{$1-\chi$ terms}}.
+\end{align}
+
+
+
+% \begin{align}\label{dR10}
+% \mathcal{R}_{1,0}^\iota={}&
+% \Bigg[
+% \frac{4(b'' )^2}{(b' )^3}\p_yf
+% -\frac{6(b'' )^3}{(b' )^4}f
+% \Bigg]\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)
+% +\Bigg[
+% -\frac{2b'' }{b' }\p_yf
+% +\frac{3(b'' )^2}{(b' )^2}f
+% \Bigg]\frac{1}{b -\lambda+i\epsilon}\notag\\
+% &+\Bigg[
+% -\frac{2b''' }{(b' )^2}\p_yf
+% +\frac{6b'' b''' }{(b' )^3}f
+% \Bigg]\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)-\frac{2b''' }{b' }
+%  \frac{f}{b -\lambda+i\epsilon}\notag\\
+% &-\frac{b'''' }{(b' )^2}f
+%  \log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\notag\\
+% &+\p_\lambda r
+% +\frac{b'' }{(b' )^2}r
+%  \log\!\left(\frac{b -\lambda+i\epsilon}{c}\right).
+% \end{align}
+
+% \begin{align}
+% &\mathcal{R}_{2,0}^{\iota}\notag\\
+% =&
+% \left[\begin{aligned}
+%     &\frac{4k^2(b'' )^2}{(b' )^4}f
+% +\frac{8(b'' )^2}{(b' )^4}\p_y(\D f)
+% -\frac{20(b'' )^3}{(b' )^5}\D f\\
+% &-\frac{28(b'' )^3}{(b' )^5}\p_yf
+% +\frac{60(b'' )^4}{(b' )^6}f
+% +\frac{4(b'' )^3}{(b' )^4}
+%  \frac{f}{b -\lambda+i\epsilon}
+% \end{aligned}
+% \right]\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\notag\\
+% &+\Bigg[
+% -\frac{4b'' }{(b' )^2}\p_y(\D f)
+% +\frac{10(b'' )^2}{(b' )^3}\D f
+% +\frac{2(b'' )^2}{(b' )^3}\p_yf
+% -\frac{15(b'' )^3}{(b' )^4}f
+% \Bigg]\frac{1}{b -\lambda+i\epsilon}\notag\\
+% &+\Bigg[
+% -\frac{4b''' }{(b' )^3}\p_y(\D f)
+% +\frac{16b'' b''' }{(b' )^4}\D f
+% +\frac{26b'' b''' }{(b' )^4}\p_yf
+% -\frac{84(b'' )^2b''' }{(b' )^5}f
+% \Bigg]\log\!\left(\frac{b -\lambda+i\epsilon}{c}\right)\notag\\
+% &-\frac{2b''(y)b'''(y)}{(b'(y))^3}
+%  \frac{f}{b(y)-\lambda+i\epsilon}
+%  \log\!\left(\frac{b(y)-\lambda+i\epsilon}{c}\right)
+% +\frac{1}{b(y)-\lambda+i\epsilon}\Bigg[
+% -\frac{4b'''(y)}{(b'(y))^2}\D f
+% -\frac{2b'''(y)}{(b'(y))^2}\p_yf
+% +\frac{16b''(y)b'''(y)}{(b'(y))^3}f
+% \Bigg]\notag\\
+% &+\Bigg[
+% -\frac{2b''''(y)}{(b'(y))^3}\D f
+% -\frac{4b''''(y)}{(b'(y))^3}\p_yf
+% +\frac{12(b'''(y))^2+18b''(y)b''''(y)}{(b'(y))^4}f
+% \Bigg]\log\!\left(\frac{b(y)-\lambda+i\epsilon}{c}\right)
+% -\frac{3b''''(y)}{(b'(y))^2}
+%  \frac{f}{b(y)-\lambda+i\epsilon}\notag\\
+% &-\frac{2b^{(5)}(y)}{(b'(y))^3}f
+%  \log\!\left(\frac{b(y)-\lambda+i\epsilon}{c}\right)\notag\\
+% &+\p_\lambda^2r
+% +\Bigg[
+% \frac{2b''(y)}{(b'(y))^3}\D r
+% -\frac{7(b''(y))^2}{(b'(y))^4}r
+% +\frac{2b'''(y)}{(b'(y))^3}r
+% \Bigg]\log\!\left(\frac{b(y)-\lambda+i\epsilon}{c}\right)
+% -\frac{b''(y)}{(b'(y))^2}
+%  \frac{r}{b(y)-\lambda+i\epsilon}.
+% \end{align}
+
+% \begin{align}
+% R_{1,1}^{(\mathrm{new})}={}&
+% -2b''(y)\p_y\left(
+% \p_\lambda^2f
+% -\frac{b''(y)}{(b'(y))^2}
+% \frac{f}{b(y)-\lambda+i\epsilon}
+% \right)\notag\\
+% &+\Bigg[
+% \frac{2k^2(b''(y))^2}{(b'(y))^3}f
+% +\frac{2(b''(y))^2}{(b'(y))^3}\p_y(\D f)
+% -\frac{4(b''(y))^3}{(b'(y))^4}\D f
+% \Bigg]\log\!\left(\frac{b(y)-\lambda+i\epsilon}{c}\right)\notag\\
+% &+\Bigg[
+% -\frac{14(b''(y))^3}{(b'(y))^4}\p_yf
+% +\frac{24(b''(y))^4}{(b'(y))^5}f
+% +\frac{2(b''(y))^3}{(b'(y))^3}
+% \frac{f}{b(y)-\lambda+i\epsilon}
+% \Bigg]\log\!\left(\frac{b(y)-\lambda+i\epsilon}{c}\right)\notag\\
+% &+\frac{1}{b(y)-\lambda+i\epsilon}\Bigg[
+% -\frac{2b''(y)}{b'(y)}\p_y(\D f)
+% +\frac{3(b''(y))^2}{(b'(y))^2}\D f
+% +\frac{2(b''(y))^2}{(b'(y))^2}\p_yf
+% -\frac{6(b''(y))^3}{(b'(y))^3}f
+% \Bigg]\notag\\
+% &-b'''(y)\p_\lambda^2f\notag\\
+% &+\Bigg[
+% -\frac{2b'''(y)}{(b'(y))^2}\p_y(\D f)
+% +\frac{5b''(y)b'''(y)}{(b'(y))^3}\D f
+% +\frac{13b''(y)b'''(y)}{(b'(y))^3}\p_yf
+% \Bigg]\log\!\left(\frac{b(y)-\lambda+i\epsilon}{c}\right)\notag\\
+% &+\Bigg[
+% -\frac{36(b''(y))^2b'''(y)}{(b'(y))^4}f
+% -\frac{b''(y)b'''(y)}{(b'(y))^2}
+% \frac{f}{b(y)-\lambda+i\epsilon}
+% \Bigg]\log\!\left(\frac{b(y)-\lambda+i\epsilon}{c}\right)\notag\\
+% &+\frac{1}{b(y)-\lambda+i\epsilon}\Bigg[
+% -\frac{3b'''(y)}{b'(y)}\D f
+% -\frac{b'''(y)}{b'(y)}\p_yf
+% +\frac{9b''(y)b'''(y)}{(b'(y))^2}f
+% \Bigg]\notag\\
+% &-\Bigg[
+% \frac{b''''(y)}{(b'(y))^2}\D f
+% +\frac{2b''''(y)}{(b'(y))^2}\p_yf
+% -\frac{6(b'''(y))^2+8b''(y)b''''(y)}
+% {(b'(y))^3}f
+% \Bigg]\log\!\left(\frac{b(y)-\lambda+i\epsilon}{c}\right)\notag\\
+% &-\frac{2b''''(y)}{b'(y)}
+% \frac{f}{b(y)-\lambda+i\epsilon}\notag\\
+% &-\frac{b^{(5)}(y)}{(b'(y))^2}f
+% \log\!\left(\frac{b(y)-\lambda+i\epsilon}{c}\right)\notag\\
+% &+\D\p_\lambda r\notag\\
+% &-\Bigg[
+% -\frac{b''(y)}{(b'(y))^2}\D r
+% +\left(
+% -\frac{b'''(y)}{(b'(y))^2}
+% +\frac{4(b''(y))^2}{(b'(y))^3}
+% \right)r
+% \Bigg]\log\!\left(\frac{b(y)-\lambda+i\epsilon}{c}\right).
+% \end{align}
+
+% {\footnotesize
+% \begin{align}
+% R_{3,0}^{(\mathrm{new})}={}&
+% -\log\!\left(\frac{b(y)-\lambda+i\epsilon}{c}\right)
+% \left\{\begin{aligned}
+% &-\frac{12k^2(b'')^2}{(b')^5}\D f
+% -\frac{8k^2(b'')^2}{(b')^5}\p_yf\\
+% &+\frac{20k^2(b'')^3}{(b')^6}f
+% -\frac{12(b'')^3}{(b')^5}
+%  \frac{\D f}{b(y)-\lambda+i\epsilon}\\
+% &-\frac{48(b'')^3}{(b')^5}\p_y\p_\lambda f
+% -\frac{6(b'')^3}{(b')^4}\p_\lambda^2f\\
+% &-\frac{12(b'')^2}{(b')^5}\p_y(\D^2f)
+% +\frac{48(b'')^3}{(b')^6}\D^2f\\
+% &+\frac{132(b'')^3}{(b')^6}\p_y(\D f)
+% -\frac{360(b'')^4}{(b')^7}\D f\\
+% &-\frac{180(b'')^4}{(b')^7}\p_yf
+% +\frac{630(b'')^5}{(b')^8}f
+% \end{aligned}\right\}
+% +\frac{1}{b(y)-\lambda+i\epsilon}
+% \left\{\begin{aligned}
+% &-\frac{2k^2b''}{(b')^3}\p_yf
+% +\frac{7k^2(b'')^2}{(b')^4}f\\
+% &-\frac{6b''}{(b')^3}\p_y(\D^2f)
+% +\frac{21(b'')^2}{(b')^4}\D^2f\\
+% &+\frac{12(b'')^2}{(b')^4}\p_y(\D f)
+% -\frac{78(b'')^3}{(b')^5}\D f\\
+% &-\frac{12(b'')^3}{(b')^5}\p_yf
+% +\frac{105(b'')^4}{(b')^6}f
+% \end{aligned}\right\}\notag\\[2mm]
+% &-\log\!\left(\frac{b(y)-\lambda+i\epsilon}{c}\right)
+% \left\{\begin{aligned}
+% &\frac{2k^2b'''}{(b')^4}\p_yf
+% -\frac{12k^2b''b'''}{(b')^5}f\\
+% &-\frac{24(b'')^2b'''}{(b')^5}\p_\lambda f
+% +\frac{18b''b'''}{(b')^4}\p_y\p_\lambda f\\
+% &+\frac{6b'''}{(b')^4}\p_y(\D^2f)
+% -\frac{30b''b'''}{(b')^5}\D^2f\\
+% &-\frac{102b''b'''}{(b')^5}\p_y(\D f)
+% +\frac{420(b'')^2b'''}{(b')^6}\D f\\
+% &+\frac{250(b'')^2b'''}{(b')^6}\p_yf
+% -\frac{1110(b'')^3b'''}{(b')^7}f\\
+% &+\frac{6b''b'''}{(b')^4}
+%  \frac{\D f}{b(y)-\lambda+i\epsilon}
+% -\frac{24(b'')^2b'''}{(b')^5}
+%  \frac{f}{b(y)-\lambda+i\epsilon}
+% \end{aligned}\right\}
+% +\frac{1}{b(y)-\lambda+i\epsilon}
+% \left\{\begin{aligned}
+% &-\frac{4k^2b'''}{(b')^3}f
+% -\frac{6b'''}{(b')^3}\D^2f\\
+% &-\frac{6b'''}{(b')^3}\p_y(\D f)
+% +\frac{66b''b'''}{(b')^4}\D f\\
+% &+\frac{14b''b'''}{(b')^4}\p_yf
+% -\frac{150(b'')^2b'''}{(b')^5}f
+% \end{aligned}\right\}\notag\\[2mm]
+% &-\log\!\left(\frac{b(y)-\lambda+i\epsilon}{c}\right)
+% \left\{\begin{aligned}
+% &\frac{k^2b''''}{(b')^4}f
+% -\frac{72b''b''''+48(b''')^2}{(b')^5}\D f\\
+% &+\frac{3b''b''''+6(b''')^2}{(b')^4}\p_\lambda f
+% +\frac{3b''''}{(b')^4}\D^2f\\
+% &+\frac{12b''''}{(b')^4}\p_y(\D f)
+% -\frac{56b''b''''+32(b''')^2}{(b')^5}\p_yf\\
+% &+\frac{265(b'')^2b''''+330b''(b''')^2}{(b')^6}f
+% +\frac{3b''b''''+6(b''')^2}{(b')^4}
+%  \frac{f}{b(y)-\lambda+i\epsilon}
+% \end{aligned}\right\}
+% +\frac{1}{b(y)-\lambda+i\epsilon}
+% \left\{\begin{aligned}
+% &-\frac{9b''''}{(b')^3}\D f
+% -\frac{3b''''}{(b')^3}\p_yf\\
+% &+\frac{35b''b''''+20(b''')^2}{(b')^4}f
+% \end{aligned}\right\}\notag\\[2mm]
+% &-\log\!\left(\frac{b(y)-\lambda+i\epsilon}{c}\right)
+% \left\{\begin{aligned}
+% &\frac{6b^{(5)}}{(b')^4}\D f
+% +\frac{6b^{(5)}}{(b')^4}\p_yf\\
+% &-\frac{40b''b^{(5)}+60b'''b''''}{(b')^5}f
+% \end{aligned}\right\}
+% +\frac{1}{b(y)-\lambda+i\epsilon}
+% \left\{-\frac{4b^{(5)}}{(b')^3}f\right\}\notag\\[2mm]
+% &-\log\!\left(\frac{b(y)-\lambda+i\epsilon}{c}\right)
+% \left\{\frac{3b^{(6)}}{(b')^4}f\right\}\notag\\[2mm]
+% &+\p_\lambda^3r
+% -\log\!\left(\frac{b(y)-\lambda+i\epsilon}{c}\right)
+% \left\{\begin{aligned}
+% &-\frac{3b''}{(b')^4}\D^2r\\
+% &+\left(
+% \frac{24(b'')^2}{(b')^5}
+% -\frac{6b'''}{(b')^4}
+% \right)\D r\\
+% &+\left(
+% -\frac{k^2b''}{(b')^4}
+% -\frac{3b''''}{(b')^4}
+% +\frac{16b''b'''}{(b')^5}
+% -\frac{15(b'')^3}{(b')^6}
+% \right)r
+% \end{aligned}\right\}\notag\\
+% &+\frac{1}{b(y)-\lambda+i\epsilon}
+% \left\{
+% \frac{b''}{(b')^3}\p_y r
+% -\frac{3b''}{(b')^3}\D r
+% +\frac{3(b'')^2}{(b')^4}r
+% \right\}.
+% \end{align}
+% }
+
+% \clearpage
+% For $R_{2,1}^{(\mathrm{new})}$, the already isolated cancellation in
+% $S_{3,0}-\p_\lambda S_{2,0}$ is performed before collecting coefficients.
+% The additional cancellation
+% $\p_\lambda\bigl(\D f-\p_yf\bigr)=b'(y)\p_\lambda^2f$
+% is kept together at the front.
+% \begin{align}
+% R_{2,1}^{(\mathrm{new})}={}&
+% -2b''(y)\p_y\bigl(\p_\lambda^3f-S_{3,0}\bigr)
+% -b'''(y)\bigl(\p_\lambda^3f-S_{3,0}\bigr)\notag\\
+% &-\frac{b'''(y)}{b(y)-\lambda+i\epsilon}
+% \bigl(\p_\lambda^2f-S_{2,0}\bigr)\notag\\
+% &-\frac{8(b''(y))^3}{(b'(y))^3}\p_\lambda^2f
+% \log\!\left(\frac{b(y)-\lambda+i\epsilon}{c}\right)\notag\\
+% &-\log\!\left(\frac{b(y)-\lambda+i\epsilon}{c}\right)
+% \Bigg\{
+% -\frac{10(b''(y))^2}{(b'(y))^4}\p_y(\D^2f)
+% +\frac{28(b''(y))^3}{(b'(y))^5}\D^2f\notag\\
+% &\qquad
+% +\frac{94(b''(y))^3}{(b'(y))^5}\p_y(\D f)
+% -\frac{250(b''(y))^4}{(b'(y))^6}\D f\notag\\
+% &\qquad
+% -\frac{8(b''(y))^3}
+% {(b'(y))^4\bigl(b(y)-\lambda+i\epsilon\bigr)}\D f
+% -\frac{8k^2(b''(y))^2}{(b'(y))^4}\D f
+% -\frac{28(b''(y))^4}{(b'(y))^5}\p_\lambda f\notag\\
+% &\qquad
+% -\frac{200(b''(y))^4}{(b'(y))^6}\p_yf
+% -\frac{2k^2(b''(y))^2}{(b'(y))^4}\p_yf
+% +\frac{540(b''(y))^5}{(b'(y))^7}f\notag\\
+% &\qquad
+% +\frac{22(b''(y))^4}
+% {(b'(y))^5\bigl(b(y)-\lambda+i\epsilon\bigr)}f
+% +\frac{30k^2(b''(y))^3}{(b'(y))^5}f
+% \Bigg\}\notag\\
+% &+\frac{1}{b(y)-\lambda+i\epsilon}
+% \Bigg\{
+% -\frac{4b''(y)}{(b'(y))^2}\p_y(\D^2f)
+% +\frac{16(b''(y))^2}{(b'(y))^3}\D^2f
+% +\frac{10(b''(y))^2}{(b'(y))^3}\p_y(\D f)\notag\\
+% &\qquad
+% -\frac{63(b''(y))^3}{(b'(y))^4}\D f
+% -\frac{2(b''(y))^3}{(b'(y))^3}\p_\lambda f\notag\\
+% &\qquad
+% -\frac{12(b''(y))^3}{(b'(y))^4}\p_yf
+% +\frac{90(b''(y))^4}{(b'(y))^5}f
+% +\frac{2k^2(b''(y))^2}{(b'(y))^3}f
+% \Bigg\}\notag\\
+% &-\log\!\left(\frac{b(y)-\lambda+i\epsilon}{c}\right)
+% \Bigg\{
+% \frac{4b'''(y)}{(b'(y))^3}\p_y(\D^2f)
+% -\frac{23b''(y)b'''(y)}{(b'(y))^4}\D^2f\notag\\
+% &\qquad
+% -\frac{64b''(y)b'''(y)}{(b'(y))^4}
+% \p_y(\D f)\notag\\
+% &\qquad
+% +\frac{285(b''(y))^2b'''(y)}{(b'(y))^5}\D f
+% +\frac{2b''(y)b'''(y)}
+% {(b'(y))^3\bigl(b(y)-\lambda+i\epsilon\bigr)}\D f\notag\\
+% &\qquad
+% +\frac{22(b''(y))^2b'''(y)}{(b'(y))^4}\p_\lambda f
+% +\frac{251(b''(y))^2b'''(y)}{(b'(y))^5}\p_yf\notag\\
+% &\qquad
+% -\frac{925(b''(y))^3b'''(y)}{(b'(y))^6}f
+% -\frac{26(b''(y))^2b'''(y)}
+% {(b'(y))^4\bigl(b(y)-\lambda+i\epsilon\bigr)}f
+% -\frac{15k^2b''(y)b'''(y)}{(b'(y))^4}f
+% \Bigg\}\notag\\
+% &+\frac{1}{b(y)-\lambda+i\epsilon}
+% \Bigg\{
+% -\frac{4b'''(y)}{(b'(y))^2}\D^2f
+% -\frac{6b'''(y)}{(b'(y))^2}\p_y(\D f)\notag\\
+% &\qquad
+% +\frac{52b''(y)b'''(y)}{(b'(y))^3}\D f
+% +\frac{2b''(y)b'''(y)}{(b'(y))^2}\p_\lambda f\notag\\
+% &\qquad
+% +\frac{12b''(y)b'''(y)}{(b'(y))^3}\p_yf
+% -\frac{125(b''(y))^2b'''(y)}{(b'(y))^4}f
+% \Bigg\}\notag\\
+% &-\log\!\left(\frac{b(y)-\lambda+i\epsilon}{c}\right)
+% \Bigg\{
+% \frac{2b''''(y)}{(b'(y))^3}\D^2f
+% +\frac{8b''''(y)}{(b'(y))^3}\p_y(\D f)\notag\\
+% &\qquad
+% -\frac{
+% 48b''(y)b''''(y)
+% +32(b'''(y))^2}
+% {(b'(y))^4}\D f
+% -\frac{4b''(y)b''''(y)}{(b'(y))^3}\p_\lambda f\notag\\
+% &\qquad
+% -\frac{
+% 48b''(y)b''''(y)
+% +28(b'''(y))^2}
+% {(b'(y))^4}\p_yf\notag\\
+% &\qquad
+% +\frac{
+% 212(b''(y))^2b''''(y)
+% +264b''(y)(b'''(y))^2}
+% {(b'(y))^5}f\notag\\
+% &\qquad
+% +\frac{
+% 2(b'''(y))^2+2b''(y)b''''(y)}
+% {(b'(y))^3\bigl(b(y)-\lambda+i\epsilon\bigr)}f
+% \Bigg\}\notag\\
+% &+\frac{1}{b(y)-\lambda+i\epsilon}
+% \Bigg\{
+% -\frac{7b''''(y)}{(b'(y))^2}\D f
+% -\frac{2b''''(y)}{(b'(y))^2}\p_yf\notag\\
+% &\qquad
+% +\frac{
+% 28b''(y)b''''(y)
+% +16(b'''(y))^2}
+% {(b'(y))^3}f
+% \Bigg\}\notag\\
+% &-\log\!\left(\frac{b(y)-\lambda+i\epsilon}{c}\right)
+% \Bigg\{
+% \frac{4b^{(5)}(y)}{(b'(y))^3}\D f
+% +\frac{4b^{(5)}(y)}{(b'(y))^3}\p_yf\notag\\
+% &\qquad
+% -\frac{
+% 30b''(y)b^{(5)}(y)
+% +45b'''(y)b''''(y)}
+% {(b'(y))^4}f
+% \Bigg\}
+% -\frac{3b^{(5)}(y)}{(b'(y))^2\bigl(b(y)-\lambda+i\epsilon\bigr)}f
+% \notag\\
+% &-\frac{2b^{(6)}(y)}{(b'(y))^3}f
+% \log\!\left(\frac{b(y)-\lambda+i\epsilon}{c}\right)\notag\\
+% &+\D\p_\lambda^2r\notag\\
+% &-\log\!\left(\frac{b(y)-\lambda+i\epsilon}{c}\right)
+% \Bigg\{
+% -\frac{2b''(y)}{(b'(y))^3}\D^2r
+% +\left(
+% -\frac{4b'''(y)}{(b'(y))^3}
+% +\frac{17(b''(y))^2}{(b'(y))^4}
+% \right)\D r\notag\\
+% &\qquad
+% +\left(
+% -\frac{2b''''(y)}{(b'(y))^3}
+% +\frac{24b''(y)b'''(y)}{(b'(y))^4}
+% -\frac{34(b''(y))^3}{(b'(y))^5}
+% \right)r
+% \Bigg\}\notag\\
+% &+\frac{1}{b(y)-\lambda+i\epsilon}
+% \Bigg\{
+% -\frac{b''(y)}{(b'(y))^2}\D r
+% +\left(
+% -\frac{b'''(y)}{(b'(y))^2}
+% +\frac{2(b''(y))^2}{(b'(y))^3}
+% \right)r
+% \Bigg\}.
+% \end{align}
+
+\endgroup
+
+\end{document}
