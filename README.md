@@ -1,6 +1,6 @@
 # Optimal Linear Inviscid Damping and Vorticity Depletion for Non-monotonic Shear Flows
 
-This repository provides explicit formulas and their symbolic verification for the remainders $\mathcal{R}_{a,b,\epsilon}^\iota$ presented in the paper *Optimal Linear Inviscid Damping and Vorticity Depletion for Non-monotonic Shear Flows*. These formulas are used in the proofs in Sections 5 and 7 to show that, after the explicit singular terms $\mathcal{S}_{a,b,\epsilon}^\iota$ are extracted from the higher-order spectral derivatives of the spectral density functions, the resulting remainders have sufficient regularity to be controlled by the limiting absorption principle.
+This repository provides explicit formulas and their symbolic verification for the remainders $\mathcal{R}\_{a,b,\epsilon}^\iota$ presented in the paper *Optimal Linear Inviscid Damping and Vorticity Depletion for Non-monotonic Shear Flows*. These formulas are used in the proofs in Sections 5 and 7 to show that, after the explicit singular terms $\mathcal{S}\_{a,b,\epsilon}^\iota$ are extracted from the higher-order spectral derivatives of the spectral density functions, the resulting remainders have sufficient regularity to be controlled by the limiting absorption principle.
 
 The formulas and their symbolic verifications are organized into two cases: non-degenerate and degenerate. For each case, the table below lists the appendix subsection containing the explicit formulas, the corresponding verification notebook, and the lemmas in which these formulas are used.
 
