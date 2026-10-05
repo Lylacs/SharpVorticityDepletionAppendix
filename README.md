@@ -7,7 +7,7 @@ The formulas and their symbolic verifications are organized into two cases: non-
 |Explicit formulas | Verification notebook | Case | Related lemmas |
 | --- | --- | --- | ---|
 |[Appendix](tex/Appendix.pdf) A.1| [Justifynd.ipynb](notebooks/Justifynd.ipynb) | Non-degenerate | 5.7, 5.9, 5.10, 5.12, 5.14, and 5.15 |
-|[Appendix](tex/Appendix.pdf) A.2| [Justifyd.ipynb](notebooks/Justifyd.ipynb) | Degenerate | 7.3, 7.5, 7.6, 7.8, 7.9, and 7.10 |
+|[Appendix](tex/Appendix.pdf) A.2| [Justifyd.ipynb](notebooks/Justifyd.ipynb) | Degenerate | 7.3, 7.5, 7.7, 7.11, 7.12, and 7.13 |
 
 
 ## Repository structure
@@ -20,7 +20,7 @@ The files in this repository are organized into two directories:
 
 ## Notes about the verification notebooks
 
-- The symbolic verifications were performed in two Jupyter notebooks using Python 3.12 and SymPy 1.14.0 in Google Colab. 
+- The symbolic verifications were performed in two Jupyter notebooks using Python 3.13.15 and SymPy 1.14.0 in Google Colab. 
 - To view the results without running any code, download the corresponding HTML files from the [notebooks](notebooks) directory and open them in any browser such as Firefox. 
 - To reproduce the verifications, open either notebook in Google Colab or a local Jupyter environment and run its cells in order.
 
